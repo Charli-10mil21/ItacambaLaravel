@@ -1,0 +1,19 @@
+/*.fila{
+	background-color: rgb(255, 0, 0);
+	height=128px;
+}
+body{
+	background: rgb(0, 128, 255); 
+}*/
+body{
+	font-size: 25px;
+}
+.btn{
+	font-size: 25px;
+	font-weight: bold ; 
+}
+.form{
+			border: 2px solid blue;
+
+			background-color: rgb(153, 217, 234);
+		}	
