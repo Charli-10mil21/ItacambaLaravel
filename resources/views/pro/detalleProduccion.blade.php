@@ -49,7 +49,7 @@
 		  			</div>
 		  			<div class="col-md-4">
 		    			<label for="H_efectivas" class="form-label">Horas efectivas</label>
-		    			<input type="text" class="form-control" id="H_efectivas" name="H_efectivas" value="{{$item->H_efectivas}}" required>
+		    			<input type="text" class="form-control" id="H_efectivas" name="H_efectivas" value="{{$item->H_efectivas}}" >
 		    			<div class="valid-feedback">
 		      			Looks good!
 		    			</div>
@@ -63,7 +63,7 @@
 		  			</div>
 		  			<div class="col-md-4">
 		    			<label for="productividad" class="form-label">Productividad</label>
-		    			<input type="text" class="form-control" id="productividad" name="productividad" value="{{$item->productividad}}" required>
+		    			<input type="text" class="form-control" id="productividad" name="productividad" value="{{$item->productividad}}" >
 		    			<div class="valid-feedback">
 		      			Looks good!
 		    			</div>
@@ -99,11 +99,8 @@
 		       	<th scope="col">Nombre Encargado</th>
 		       	<th scope="col">Turno</th>		       	
 		       	<th scope="col">Blending_id</th>
-		        <th scope="col">Codigo de Produccion</th>		        
-		        <th scope="col">Hora efectivas Maquinaria</th>
-		        <th scope="col">Paradas</th>
-		        <th scope="col">Nivel</th>
-		        <th scope="col">Voladura</th>
+		       	<th scope="col">Horas Efectivas</th>
+		       	<th scope="col">Topografia_id</th>		        
 		        <th scope="col">Nº Volquetas</th>
 		        <th scope="col">Viajes total</th>
 		        <th scope="col">Toneladas</th>		        
@@ -111,7 +108,23 @@
 		      </tr>
 		    </thead>
 		    <tbody>
+		    	@php
+	    		$totalVi = 0;
+	    		$totalHo = 0;
+	    		$totalTn = 0;
+	    		$totalBa = 0;   		
+	    		@endphp
 		       @foreach($paneles as $pan)
+		       @php
+	    		$viajes=$pan->N_viajes;
+	    		$totalVi += $viajes;
+	    		$horas=$pan->HorasEfectivas;
+	    		$totalHo += $horas;
+	    		$toneladas=$pan->toneladas_total;
+	    		$totalTn += $toneladas;
+	    		$balanza=$pan->balanza;
+	    		$totalBa += $balanza;
+	    		@endphp
 		      <tr>
 		        <th scope="row">{{$pan->id}}</th>
 		        <td>{{$pan->fecha}}</td>
@@ -124,7 +137,6 @@
 		        <td>{{$pan->N_viajes}}</td>
 		        <td>{{$pan->toneladas_total}}</td>
 		        <td>{{$pan->balanza}}</td>
-		        <td>{{$pan->produccion_id}}</td>
 		      </tr>
 		      @endforeach()
 		    </tbody>
@@ -133,5 +145,20 @@
 
 
 </div>
+
+<script>
+
+	document.getElementById("T_viajes").value = {{$totalVi}};
+	document.getElementById("T_horas").value = {{$totalHo}};
+	document.getElementById("T_produccion").value = {{$totalTn}};
+	document.getElementById("T_balanza").value = {{$totalBa}};
+
+	var ton = document.getElementById("T_produccion").value;
+	var horas = document.getElementById("T_horas").value;
+	var productividad = Math.round(ton/horas);
+	document.getElementById("productividad").value = productividad;
+
+
+</script>
 
 @endsection

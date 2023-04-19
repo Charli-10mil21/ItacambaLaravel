@@ -3,18 +3,28 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- ajax -->
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<!-- ajax -->
 	<title>@yield('title')</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 	<link rel="stylesheet" href="admin.css">
 	<style>
 		body{
-			background: rgb(0, 128, 255);
-			background: linear-gradient(to bottom ,rgb(255,255,255)65%,rgb(29,86,153));
+			/*background: rgb(0, 128, 255);
+			background: linear-gradient(to bottom ,rgb(255,255,255)65%,rgb(29,86,153));*/
 		
 		}
 		html {
     		height: 100%;
 		}
+
+      .chartBox {
+        padding: 20px;
+        border-radius: 20px;
+        border: solid 3px rgba(255, 26, 104, 1);
+        background: white;
+      }
 		
 
 	</style>

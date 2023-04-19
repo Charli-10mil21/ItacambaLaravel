@@ -29,12 +29,8 @@
 		       	<th scope="col">Fecha</th>
 		       	<th scope="col">Nombre Encargado</th>
 		       	<th scope="col">Turno</th>		       	
-		       	<th scope="col">Blending_id</th>
-		        <th scope="col">Codigo de Produccion</th>		        
-		        <th scope="col">Hora efectivas Maquinaria</th>
-		        <th scope="col">Paradas</th>
-		        <th scope="col">Nivel</th>
-		        <th scope="col">Voladura</th>
+		       	<th scope="col">Blending_id</th>		        
+		        <th scope="col">Horas Efectivas</th>
 		        <th scope="col">Nº Volquetas</th>
 		        <th scope="col">Viajes total</th>
 		        <th scope="col">Toneladas</th>		        
@@ -51,12 +47,10 @@
 		        <td>{{$item->turno}}</td>
 		        <td>{{$item->blending_id}}</td>
 		        <td>{{$item->HorasEfectivas}}</td>
-		        <td>{{$item->topografia_id}}</td>
 		        <td>{{$item->N_volquetas}}</td>
 		        <td>{{$item->N_viajes}}</td>
 		        <td>{{$item->toneladas_total}}</td>
 		        <td>{{$item->balanza}}</td>
-		        <td>{{$item->produccione_id}}</td>
 		        <td>
 		        	<a href="{{route('paneles.edit',$item->id)}} " class="btn btn-warning btn-sm"><img src="img/editar2.png" alt="" height="25px">Control</a>
 

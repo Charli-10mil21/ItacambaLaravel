@@ -49,7 +49,7 @@
 			
 		<div class="row row-cols-1 row-cols-md-3 row-cols-lg-3 justify-content-between">
 			<div class="iconos col col-xs-12 col-sm-12 col-md-6 col-lg-6 user">
-				<a href=" " class="nav-link">
+				<a href="{{route('InformePlani')}} " class="nav-link">
 					<div class="text-center">
 						<img src="img/informe.png" alt="" height="90px">
 					</div>
@@ -61,7 +61,7 @@
 				</a>
 			</div>
 			<div class="iconos col col-xs-12 col-sm-12 col-md-6 col-lg-6 user">
-				<a href=" " class="nav-link">
+				<a href="{{route('InformeProduc')}} " class="nav-link">
 					<div class="text-center">
 						<img src="img/informe.png" alt="" height="90px">
 					</div>

@@ -35,7 +35,7 @@
 		        <th scope="row">{{$item->id}}</th>
 		        <td>{{$item->nombre}}</td>
 		        <td>{{$item->estado}}</td>
-		        <td>{{$item->horasAcumuladas}}</td>
+		        <td>{{$item->horasA}}</td>
 		         <td>
 		           <a href="{{route('maquinarias.edit',$item->id)}} " class="btn btn-warning btn-sm"><img src="img/editar2.png" alt="" height="25px"></a>
 

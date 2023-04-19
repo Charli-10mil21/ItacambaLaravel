@@ -67,11 +67,9 @@
 		        <th scope="col">#id</th>
 		        <th scope="col">Fecha</th> 
 		        <th scope="col">Cinta Transportadora</th>		     	
-		        <th scope="col">Turno Nº1</th>
-		        <th scope="col">Turno Nº2</th>
 		        <th scope="col">Total Viajes</th>
 		        <th scope="col">Horas Trabajadas</th>
-		        <th scope="col">Horas Efectivas</th>
+		        <!-- <th scope="col">Horas Efectivas</th> -->
 		        <th scope="col">Produccion</th>
 		        <th scope="col">Productividad</th>
 		        <th scope="col">Balanza Total</th>   
@@ -84,11 +82,12 @@
 		        <th scope="row">{{$item->id}}</th>
 		        <td>{{$item->fecha}}</td>
 		        <td>{{$item->cinta}}</td>
-		        <td></td>
-		        <td></td>
-		        <td></td>
-		        <td></td>
-		        <td></td>
+		        <td>{{$item->T_viajes}}</td>
+		        <td>{{$item->T_horas}}</td>
+		        <!-- <td>{{$item->H_efectivas}}</td> -->
+		        <td>{{$item->T_produccion}}</td>
+		        <td>{{$item->productividad}}</td>
+		        <td>{{$item->T_balanza}}</td>
 		        <td>
 		         	<a href="{{route('producciones.edit',$item->id)}} " class="btn btn-warning btn-sm"><img src="img/editar2.png" alt="" height="25px"></a>
 

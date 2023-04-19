@@ -14,7 +14,7 @@
 			</div>
 		@endif
 	<div class="row">
-		<form class="row form m-3 needs-validation" action="{{route('paneles.update', $item->id)}}" method="post">
+		<form  id="form1" class="row form m-3 needs-validation" action="{{route('paneles.update', $item->id)}}" method="post">
 		@csrf 
 		@method('put')
 			<div class="col-md-6">
@@ -62,7 +62,7 @@
 		  	</div>
 		  	<div class="col-md-6">
 		    	<label for="N_viajes" class="form-label">Nº viajes</label>
-		    	<input type="text" class="form-control" id="N_viajes" name="N_viajes" value="{{$item->N_viajes}}" >
+		    	<input type="text" class="form-control" id="N_viajes" name="N_viajes" value="{{$item->N_viajes}}"  >
 		    	<div class="valid-feedback">
 		      	Looks good!
 		    	</div>
@@ -99,16 +99,6 @@
 		  	</div> -->
 		</form>
 	</div>
-
-	<h1>Cronometro de Inicio de Trabajos</h1>
-	<span id="chronotime">0:00:00:00</span>
-	<form name="chronoForm">
-	    <input type="button" name="startstop" value="start!" onClick="chronoStart()" />
-	    <input type="button" name="reset" value="reset!" onClick="chronoReset()" />
-	</form>
-
-	
-
 	
 
 	<h1>
@@ -125,20 +115,28 @@
 	        <th scope="col">Voladura</th>
 	        <th scope="col">Nº Viajes</th>
 	      	<th scope="col">Aumentar</th>
-	        <th scope="col">Ver detalle</th>
+	        <!-- <th scope="col">Ver detalle</th> -->
 	      </tr>
 	    </thead>
 	    <tbody>
+	    	@php
+	    		$total = 0
+	    		
+	    	@endphp
 	    	@foreach($viajes as $vi)
+	    	@php
+	    		$viajes=$vi->n_viajes;
+	    		$total += $viajes;
+	    	@endphp
 	      <tr>
 	        <th scope="row">{{$vi->id}}</th>
 	        <td>{{$vi->panele_id}}</td>
 	        <td>{{$vi->volqueta_id}}</td>
 	        <td>{{$vi->nivel}}</td>
 	        <td>{{$vi->voladura}}</td>
-	        <td>{{$vi->n_viajes}}</td>		        
+	        <td class="viaje{{$vi->id}}">{{$vi->n_viajes}}</td>		        
 	        <td>
-	        	<form class="row form m-3 needs-validation" action="{{route('viajes.update', $vi->id)}}" method="post">
+	        	<form id="form2" class="row form m-3 needs-validation" action="{{route('viajes.update', $vi->id)}}" method="post">
 					@csrf 
 					@method('put')
 					
@@ -151,7 +149,7 @@
 				  	</div>
 				</form>
 	        </td>
-	         <td>
+	        <!--  <td>
 	           <a href="{{route('viajes.edit',$vi->id)}} " class="btn btn-warning btn-sm"><img src="img/editar2.png" alt="" height="25px"></a>
 
 	           <form href="{{route('viajes.edit',$vi->id)}}" method="post" class="d-inline">
@@ -161,12 +159,15 @@
 	                <img src="img/eliminar.png" alt="" height="25px">
 	              </button>
 	           </form>
-	         </td>
+	         </td> -->
 	      </tr>
 	     	@endforeach()
+	     	
 	    </tbody>		     
 	  </table>
 	</div>
+
+	<div>{{$total}}</div>
 
 	<h3>Detalle de actividades</h3>
 
@@ -194,7 +195,7 @@
 	        <td>{{$acti->horaIni}}</td>
 	        <!-- <td>{{$acti->horaFin}}</td> -->
 	        <td>
-	        	<form class="row form m-3 needs-validation" action="{{route('actividades.update', $acti->id)}}" method="post">
+	        	<form id="form3" class="row form m-3 needs-validation" action="{{route('actividades.update', $acti->id)}}" method="post">
 					@csrf 
 					@method('put')
 					
@@ -224,7 +225,7 @@
 	  </table>
 	</div>
 
-	<h3>Maquinaria</h3>
+	<!-- <h3>Maquinaria</h3>
 
 	<div class="row my-4">
 	  <table class="table">
@@ -266,7 +267,7 @@
 	      @endforeach()
 	    </tbody>
 	  </table>
-	</div>
+	</div> -->
 
 	<div class="row">	
 		<button class="btn btn-primary " type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -411,69 +412,14 @@
 
 			inicio.addEventListener('change', e => resultado.value = calculaIntervalo(e.target.value, final.value))
 			final.addEventListener('change', e => resultado.value = calculaIntervalo(inicio.value, e.target.value))
+			
+			
+			document.getElementById("N_viajes").value = {{$total}};
 
-			///cronometro
 
-			var startTime = 0
-			var start = 0
-			var end = 0
-			var diff = 0
-			var timerID = 0
-			function chrono(){
-			    end = new Date()
-			    diff = end - start
-			    diff = new Date(diff)
-			    var msec = diff.getMilliseconds()
-			    var sec = diff.getSeconds()
-			    var min = diff.getMinutes()
-			    var hr = diff.getHours()-diff.getHours()
-			    if (min < 10){
-			        min = "0" + min
-			    }
-			    if (sec < 10){
-			        sec = "0" + sec
-			    }
-			    if(msec < 10){
-			        msec = "00" +msec
-			    }
-			    else if(msec < 100){
-			        msec = "0" +msec
-			    }
-			    var time = hr + ":" + min + ":" + sec + ":" + msec
-			    var inputTime = hr + "." + min + "." + sec
-			    document.getElementById("chronotime").innerHTML = time
-			    document.getElementById("chronoInput").value = inputTime
-			    timerID = setTimeout("chrono()", 10)
-			}
-			function chronoStart(){
-			    document.chronoForm.startstop.value = "stop!"
-			    document.chronoForm.startstop.onclick = chronoStop
-			    document.chronoForm.reset.onclick = chronoReset
-			    start = new Date()
-			    chrono()
-			}
-			function chronoContinue(){
-			    document.chronoForm.startstop.value = "stop!"
-			    document.chronoForm.startstop.onclick = chronoStop
-			    document.chronoForm.reset.onclick = chronoReset
-			    start = new Date()-diff
-			    start = new Date(start)
-			    chrono()
-			}
-			function chronoReset(){
-			    document.getElementById("chronotime").innerHTML = "0:00:00:000"
-			    start = new Date()
-			}
-			function chronoStopReset(){
-			    document.getElementById("chronotime").innerHTML = "0:00:00:000"
-			    document.chronoForm.startstop.onclick = chronoStart
-			}
-			function chronoStop(){
-			    document.chronoForm.startstop.value = "start!"
-			    document.chronoForm.startstop.onclick = chronoContinue
-			    document.chronoForm.reset.onclick = chronoStopReset
-			    clearTimeout(timerID)
-			}
+			var viaje = document.getElementById("N_viajes").value;
+				var res =  viaje*26;
+				document.getElementById("toneladas_total").value = res;
 			
 
 			

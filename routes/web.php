@@ -19,6 +19,7 @@ use App\Http\Controllers\ViajeController;
 use App\Http\Controllers\ParadaController;
 use App\Http\Controllers\ActividadeController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\InformePlaniController;
 
 
    
@@ -35,7 +36,7 @@ use App\Http\Controllers\SessionController;
 */
 
 
-Route::get('login', [SessionController::class, 'create']);
+Route::get('login', [SessionController::class, 'create'])->name('login');
 Route::post('/login', [SessionController::class, 'store']);
 
 Route::controller(AdminController::class)->group(function(){
@@ -51,6 +52,10 @@ Route::controller(AdminController::class)->group(function(){
     //con esto se resumen las anteriores direcciones
 Route::resource('volquetas', VolquetaController::class);
 Route::resource('maquinarias', MaquinariaController::class);
+Route::get('informePlanificacion', [InformePlaniController::class, 'index'])->name('InformePlani');
+Route::get('informePlaniDetalle/{id}', [InformePlaniController::class, 'InformesDes'])->name('InformePlaniDetalle');
+Route::get('informeProduccion', [InformePlaniController::class, 'produccion'])->name('InformeProduc');
+
     // Route::get('Trabajador', 'trabajador');
 
 
@@ -67,6 +72,13 @@ Route::resource('blendings',BlendingController::class);
 
     //reporte
 Route::get('donwload_pdf/{id}',[BlendingController::class,'generar_pdf'] )->name('pdf');
+
+    //ajax
+Route::post('planificaciones/all',[InformePlaniController::class, 'all']);
+Route::post('producciones/pro',[InformePlaniController::class, 'pro']);
+Route::post('poligonos/all',[InformePlaniController::class, 'poli']);
+Route::post('/informePlaniDetalle/planiBlendings/all',[InformePlaniController::class, 'Blending']);
+
 
   //area produccion
 Route::resource('producciones',ProduccioneController::class);
