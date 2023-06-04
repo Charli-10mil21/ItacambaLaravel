@@ -20,11 +20,10 @@ class Topografia extends Model
         return $this->hasMany('App\Models\Poligono');
     }
 
-    public function blendings(){
-        return $this->hasMany('App\Models\Blending');
+    public function descripcionBlendings(){
+        return $this->hasMany('App\Models\DescBlending');
     }
 
-    public function paneles(){
-        return $this->hasMany('App\Models\Panele');
-    }
+
+    
 }

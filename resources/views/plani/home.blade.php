@@ -9,8 +9,7 @@
 	<div class="row">
 			<h1>
 				Proyectos
-			</h1>
-			
+			</h1>	
 		<div class="row">
 				@if(session('mensaje')) 
 					<div class="alert alert-success">
@@ -73,7 +72,7 @@
 		</div>
 
 		
-		<div class="row my-4">
+		{{-- <div class="row my-4">
 		  <form action=" ">
 		    <div class="form-row">
 		      <div class="col-sm-4 my-1">
@@ -84,7 +83,7 @@
 		      </div>
 		    </div>
 		  </form>
-		</div>
+		</div> --}}
 
 
 		<div class="row my-4">

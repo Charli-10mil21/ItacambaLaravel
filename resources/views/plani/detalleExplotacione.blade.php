@@ -64,10 +64,10 @@
 					      </div>
 					</div>
 					<div class="col-md-4">
-					    <label for="tiempo" class="form-label">Tiempo</label>
-					      <input type="text" class="form-control" id="tiempo" name="tiempo" value="{{$item->tiempo}}" required>
+					    <label for="fecha" class="form-label">fecha</label>
+					      <input type="date" class="form-control" id="fecha" name="fecha" value="{{$item->fecha}}" >
 					      <div class="invalid-feedback">
-					        Ingrese un tiempo en dias
+					        Ingrese un fecha programada
 					      </div>
 					</div>
 					<div class="col-md-4">

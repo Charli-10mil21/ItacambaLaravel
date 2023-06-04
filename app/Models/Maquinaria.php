@@ -9,4 +9,9 @@ class Maquinaria extends Model
 {
     use HasFactory;
     protected $guarded =[];
+
+    //relacion uno a muchos 
+    public function usoMaquinarias(){
+        return $this->hasMany('App\Models\DescMaquinaria');
+    }
 }

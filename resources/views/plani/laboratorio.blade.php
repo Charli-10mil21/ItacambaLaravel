@@ -28,11 +28,17 @@
 		        <th scope="col">#id</th>
 		       	<th scope="col">Fecha</th>
 		       	<th scope="col">leyes
-		       		<th scope="col2">MgO</th>
-		       		<th scope="col2">Fe2O3</th>
 		       		<th scope="col2">SiO2</th>
 		       		<th scope="col2">Al2O3</th>
+		       		<th scope="col2">Fe2O3</th>
 		       		<th scope="col2">CaO</th>
+		       		<th scope="col2">MgO</th>
+					<th scope="col2">Na2O</th>
+					<th scope="col2">K2O</th>
+					<th scope="col2">Cl</th>
+					<th scope="col2">FSC</th>
+					<th scope="col2">MS</th>
+					<th scope="col2">MA</th>
 		       	</th>
 		        <th scope="col">destino</th>
 		        <th scope="col">Muestra</th>
@@ -46,13 +52,19 @@
 		        <th scope="row">{{$item->id}}</th>
 		        <td>{{$item->fecha}}</td>
 		        <td> </td>
-		        <td>{{$item->mg}}</td>
-		        <td>{{$item->fe}}</td>
-		        <td>{{$item->si}}</td>
-		        <td>{{$item->al}}</td>
-		        <td>{{$item->ca}}</td>
+		        <td>{{$item->SiO2}}</td>
+				<td>{{$item->Al2O3}}</td>
+				<td>{{$item->Fe2O3}}</td>
+				<td>{{$item->CaO}}</td>
+				<td>{{$item->MgO}}</td>
+				<td>{{$item->Na2O}}</td>
+				<td>{{$item->K2O}}</td>
+				<td>{{$item->Cl}}</td>
+				<td>{{$item->FSC}}</td>
+				<td>{{$item->MS}}</td>
+				<td>{{$item->MA}}</td>
 		        <td>{{$item->destino}}</td>
-		        <td><a href="{{route('muestras.edit',$item->muestra_id)}}">{{$item->muestra_id}}</a></td>
+		        {{-- <td><a href="{{route('muestras.edit',$item->muestra_id)}}">{{$item->muestra_id}}</a></td> --}}
 		        <td><a href=" ">{{$item->blending_id}}</a>
 		        </td>
 		         <td>
@@ -100,7 +112,7 @@
   							<option value=" ">--Escoja el Nº de muestra--</option>
   							@foreach($muestras as $mu)
   								<option value="{{$mu->id}}">
-  									{{$mu->lote}}
+  									{{$mu->codigo}}
   								</option>
   							@endforeach()
   							</select>
@@ -108,37 +120,79 @@
 					        inserte puntos validos
 					      </div>
 					</div>
-					<div class="col-md-2">
-					    <label for="mg" class="form-label">MgO</label>
-					      <input type="text" class="form-control" id="mg" name="mg" required>
+					<div class="col-md-1">
+					    <label for="SiO2" class="form-label">SiO2</label>
+					      <input type="text" class="form-control" id="SiO2" name="SiO2">
 					      <div class="invalid-feedback">
 					        inserte puntos validos
 					      </div>
 					</div>
-					<div class="col-md-2">
-					    <label for="fe" class="form-label">Fe2O3</label>
-					      <input type="text" class="form-control" id="fe" name="fe" required>
+					<div class="col-md-1">
+					    <label for="Al2O3" class="form-label">Al2O3</label>
+					      <input type="text" class="form-control" id="Al2O3" name="Al2O3">
 					      <div class="invalid-feedback">
 					        inserte puntos validos
 					      </div>
 					</div>
-					<div class="col-md-2">
-					    <label for="si" class="form-label">SiO2</label>
-					      <input type="text" class="form-control" id="si" name="si" required>
+					<div class="col-md-1">
+					    <label for="Fe2O3" class="form-label">Fe2O3</label>
+					      <input type="text" class="form-control" id="Fe2O3" name="Fe2O3">
 					      <div class="invalid-feedback">
 					        inserte puntos validos
 					      </div>
 					</div>
-					<div class="col-md-2">
-					    <label for="al" class="form-label">Al2O3</label>
-					      <input type="text" class="form-control" id="al" name="al" required>
+					<div class="col-md-1">
+					    <label for="CaO" class="form-label">CaO</label>
+					      <input type="text" class="form-control" id="CaO" name="CaO">
 					      <div class="invalid-feedback">
 					        inserte puntos validos
 					      </div>
 					</div>
-					<div class="col-md-2">
-					    <label for="ca" class="form-label">CaO</label>
-					      <input type="text" class="form-control" id="ca" name="ca" required>
+					<div class="col-md-1">
+					    <label for="MgO" class="form-label">MgO</label>
+					      <input type="text" class="form-control" id="MgO" name="MgO">
+					      <div class="invalid-feedback">
+					        inserte puntos validos
+					      </div>
+					</div>
+					<div class="col-md-1">
+					    <label for="Na2O" class="form-label">Na2O</label>
+					      <input type="text" class="form-control" id="Na2O" name="Na2O">
+					      <div class="invalid-feedback">
+					        inserte puntos validos
+					      </div>
+					</div>
+					<div class="col-md-1">
+					    <label for="K2O" class="form-label">K2O</label>
+					      <input type="text" class="form-control" id="K2O" name="K2O">
+					      <div class="invalid-feedback">
+					        inserte puntos validos
+					      </div>
+					</div>
+					<div class="col-md-1">
+					    <label for="Cl" class="form-label">Cl</label>
+					      <input type="text" class="form-control" id="Cl" name="Cl">
+					      <div class="invalid-feedback">
+					        inserte puntos validos
+					      </div>
+					</div>
+					<div class="col-md-1">
+					    <label for="FSC" class="form-label">FSC</label>
+					      <input type="text" class="form-control" id="FSC" name="FSC">
+					      <div class="invalid-feedback">
+					        inserte puntos validos
+					      </div>
+					</div>
+					<div class="col-md-1">
+					    <label for="MS" class="form-label">MS</label>
+					      <input type="text" class="form-control" id="MS" name="MS">
+					      <div class="invalid-feedback">
+					        inserte puntos validos
+					      </div>
+					</div>
+					<div class="col-md-1">
+					    <label for="MA" class="form-label">MA</label>
+					      <input type="text" class="form-control" id="MA" name="MA">
 					      <div class="invalid-feedback">
 					        inserte puntos validos
 					      </div>
@@ -170,6 +224,30 @@
 				  	</div>
 				</form>
 			  </div>
+			</div>
+		</div>
+
+		<div class="row my-5">
+			@if(session('mensaje')) 
+			@endif
+			<button class="btn btn-primary " type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
+				Importar Informes de Laboratorio
+			</button>
+			<div class="collapse" id="collapseExample2">
+				<div class="card card-body">
+					<form class="row form m-3 needs-validation" action="{{route('importarStore')}}" method="post" enctype="multipart/form-data">
+						@csrf
+						
+						<div class="col-md-4">
+							<label for="file" class="form-label">seleccionar archivo</label>
+							  <input type="file" class="form-control" name="file" accept=".csv, .xlsx"  required>
+						</div>
+						
+						<div class="col-12 my-3">
+							<button class="btn btn-primary" type="submit">importar archivo</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	

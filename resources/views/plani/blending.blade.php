@@ -7,7 +7,7 @@
 	<h1>
 		Blending
 	</h1>
-		<div class="row my-4">
+		{{-- <div class="row my-4">
 		  <form action=" ">
 		    <div class="form-row">
 		      <div class="col-sm-4 my-1">
@@ -18,7 +18,7 @@
 		      </div>
 		    </div>
 		  </form>
-		</div>
+		</div> --}}
 
 
 		<div class="row my-4">
@@ -28,13 +28,11 @@
 		        <th scope="col">#id</th>
 		       	<th scope="col">Codigo Produccion</th>
 		       	<th scope="col">Fecha</th>
-	       		<th scope="col2">FSC</th>
-	       		<th scope="col2">MS</th>
-	       		<th scope="col2">MA</th>
-	       		<th scope="col2">Toneladas Propuestas</th>
-	       		<th scope="col2">Viajes</th>
-		        <th scope="col">Planificacion</th>
-		        <th scope="col">Nivel Topografico</th>		        
+	       		<th scope="col2">Hora de Inicio</th>
+				<th scope="col2">Estado</th>
+	       		<th scope="col2">Tipo de material</th>
+	       		<th scope="col2">Observaciones</th>
+		        <th scope="col">Planificacion</th>		        
 		        <th scope="col">Ver detalle</th>
 		      </tr>
 		    </thead>
@@ -44,13 +42,11 @@
 		        <th scope="row">{{$item->id}}</th>
 		        <td>{{$item->codigo}}</td>
 		        <td>{{$item->fecha}}</td>
-		        <td>{{$item->fsc}}</td>
-		        <td>{{$item->ms}}</td>
-		        <td>{{$item->ma}}</td>
-		        <td>{{$item->toneladas}}</td>
-		        <td>{{$item->viajes}}</td>
+		        <td>{{$item->HoraIni}}</td>
+				<td>{{$item->estado}}</td>
+		        <td>{{$item->materia_id}}</td>
+		        <td>{{$item->Observaciones}}</td>
 		        <td><a href="{{route('planificacions.edit',$item->planificacion_id)}}">{{$item->planificacion_id}}</a></td>
-		        <td><a href="{{route('topografias.edit',$item->topografia_id)}}">{{$item->topografia_id}}</a></td>
 		         <td>
 		           <a href="{{route('blendings.edit',$item->id)}} " class="btn btn-warning btn-sm"><img src="img/editar2.png" alt="" height="25px"></a>
 
@@ -83,42 +79,63 @@
 			   	<form class="row form m-3 needs-validation" action="{{route('blendings.store')}}" method="post">
 			   		@csrf
 		  			
-				  	<div class="col-md-6">
-				    	<label for="codigo" class="form-label">Codigo Produccion</label>
+				  	<div class="col-md-3">
+				    	<label for="codigo" class="form-label">Cod. Produccion</label>
 				    	<input type="text" class="form-control" id="codigo" name="codigo" required>
 				    	<div class="valid-feedback">
 				      	Looks good!
 				    	</div>
 				  	</div>
-				  	<div class="col-md-4">
-					    <label for="fecha" class="form-label">Fecha</label>
+				  	<div class="col-md-2">
+					    <label for="fecha" class="form-label">Fecha </label>
 					      <input type="date" class="form-control" id="fecha" name="fecha" aria-describedby="inputGroupPrepend" required>
 					      <div class="invalid-feedback">
 					        inserte fecha
 					      </div>
 					</div>
+					
+					<div class="col-md-3">
+					    <label for="HoraIni" class="form-label">Hora Inicio</label>
+					      <input type="time" class="form-control" id="HoraIni" name="HoraIni" required>
+					      <div class="invalid-feedback">
+					        inserte hora 
+					      </div>
+					</div>
+					<div class="col-md-3">
+					    <label for="estado" class="form-label my-2">Estado</label>
+					    <select class="form-select" id="estado" name="estado" required>
+					    	<!-- selected disabled Esto sirve para que una opcion no se pueda escoger -->
+					      <option >
+					      		Propuesto
+					      </option>
+					      <option>En Proceso</option>
+					      <option>Concluido</option>
+					    </select>
+					    <div class="invalid-feedback">
+					      Please select a valid state.
+					    </div>
+					</div>
 					<div class="col-md-2">
-					    <label for="fsc" class="form-label">FSC</label>
-					      <input type="text" class="form-control" id="fsc" name="fsc" required>
+					    <label for="materia_id" class="form-label">Material</label>
+					      <select name="materia_id" id="inputmateria" class="form-control">
+  							<option value=" ">--Escoja tipo de material--</option>
+  							@foreach($materiales as $mate)
+  								<option value="{{$mate->id}}">{{$mate->name}}</option>
+  							@endforeach()
+  							</select>
 					      <div class="invalid-feedback">
 					        inserte puntos validos
 					      </div>
 					</div>
-					<div class="col-md-2">
-					    <label for="ms" class="form-label">MS</label>
-					      <input type="text" class="form-control" id="ms" name="ms" required>
+					<div class="col-md-4">
+					    <label for="Observaciones" class="form-label">Observaciones</label>
+					      <input type="text" class="form-control" id="Observaciones" name="Observaciones" required>
 					      <div class="invalid-feedback">
-					        inserte puntos validos
+					        inserte algun detalle 
 					      </div>
 					</div>
-					<div class="col-md-2">
-					    <label for="ma" class="form-label">MA</label>
-					      <input type="text" class="form-control" id="ma" name="ma" required>
-					      <div class="invalid-feedback">
-					        inserte puntos validos
-					      </div>
-					</div>
-					<div class="col-md-2">
+				
+					{{-- <div class="col-md-2">
 					    <label for="toneladas" class="form-label">Toneladas</label>
 					      <input type="text" class="form-control" id="toneladas" name="toneladas" onkeyup="PasarValor();" required>
 					      <div class="invalid-feedback">
@@ -131,25 +148,13 @@
 					      <div class="invalid-feedback">
 					        inserte puntos validos
 					      </div>
-					</div>
-					<div class="col-md-4">
+					</div> --}}
+					<div class="col-md-2">
 					    <label for="planificacion_id" class="form-label">Planificacion</label>
 					      <select name="planificacion_id" id="inputPlanificacion" class="form-control">
   							<option value=" ">--Escoja la planificacion--</option>
   							@foreach($planificaciones as $plan)
   								<option value="{{$plan->id}}">{{$plan->name}}</option>
-  							@endforeach()
-  							</select>
-					      <div class="invalid-feedback">
-					        inserte puntos validos
-					      </div>
-					</div>
-					<div class="col-md-4">
-					    <label for="topografia_id" class="form-label">Nivel Topografico</label>
-					      <select name="topografia_id" id="inputTopografia" class="form-control">
-  							<option value=" ">--Escoja el nivel Topografico--</option>
-  							@foreach($topografias as $topo)
-  								<option value="{{$topo->id}}">{{$topo->area}}</option>
   							@endforeach()
   							</select>
 					      <div class="invalid-feedback">

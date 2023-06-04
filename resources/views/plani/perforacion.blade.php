@@ -7,7 +7,7 @@
 	<h1>
 		Perforacion
 	</h1>
-		<div class="row my-4">
+		{{-- <div class="row my-4">
 		  <form action=" ">
 		    <div class="form-row">
 		      <div class="col-sm-4 my-1">
@@ -18,7 +18,7 @@
 		      </div>
 		    </div>
 		  </form>
-		</div>
+		</div> --}}
 
 
 		<div class="row my-4">
@@ -26,7 +26,7 @@
 		    <thead>
 		      <tr>
 		        <th scope="col">#id</th>
-		        <th scope="col">Nº Perforacion</th>
+		        <th scope="col">Cod. Perforacion</th>
 		       	<th scope="col">Coordenadas</th>
 		       	<th scope="col">Profundidad</th>
 		        <th scope="col">Area Poligono</th>
@@ -37,7 +37,7 @@
 		     @foreach($items as $item)
 		      <tr>
 		        <th scope="row">{{$item->id}}</th>
-		        <td>{{$item->numero}}</td>
+		        <td>{{$item->Codigo}}</td>
 		        <td>{{$item->coordenadas}}</td>
 		        <td>{{$item->profundidad}}</td>
 		        <td><a href="{{route('poligonos.edit',$item->poligono_id)}}">{{$item->poligono_id}}</a></td>
@@ -74,8 +74,8 @@
 			   		@csrf
 		  			
 				  	<div class="col-md-6">
-				    	<label for="numero" class="form-label">Nº Perforacion</label>
-				    	<input type="int" class="form-control" id="numero" name="numero" required>
+				    	<label for="Codigo" class="form-label">Codigo Perforacion</label>
+				    	<input type="int" class="form-control" id="Codigo" name="Codigo" required>
 				    	<div class="valid-feedback">
 				      	Looks good!
 				    	</div>

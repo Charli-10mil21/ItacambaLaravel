@@ -18,21 +18,21 @@
 				
 				@csrf 
 				@method('put')
-		  			<div class="col-md-6">
+		  			<div class="col-md-2">
 		    			<label for="nombre" class="form-label my-2 fw-bold">Nombres</label>
 		    			<input type="text" class="form-control" id="nombre" name="nombre" value="{{$usuario->nombre}}"  required>
 		    			<div class="valid-feedback">
 		      			Looks good!
 		    			</div>
 		  			</div>
-				  	<div class="col-md-6">
+				  	<div class="col-md-3">
 				    	<label for="apellido" class="form-label my-2 fw-bold">Apellidos</label>
 				    	<input type="text" class="form-control" id="apellido" name="apellido" value="{{$usuario->apellido}}"required>
 				    	<div class="valid-feedback">
 				      	Looks good! 
 				    	</div>
 				  	</div>
-					<div class="col-md-4">
+					<div class="col-md-3">
 					    <label for="email" class="form-label my-2 fw-bold">email</label>
 					    <div class="input-group has-validation">
 					      <span class="input-group-text" id="inputGroupPrepend">@</span>
@@ -42,7 +42,7 @@
 					      </div>
 					    </div>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-3">
 					    <label for="password" class="form-label my-2 fw-bold">Contraseña</label>
 					    <div class="input-group has-validation">
 					      <input type="password" class="form-control" id="password" name="password" value="{{$usuario->password}}"  required>
@@ -51,7 +51,7 @@
 					      </div>
 					    </div>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-3">
 					    <label for="campo" class="form-label my-2 fw-bold">Campo</label>
 					    <select class="form-select" id="campo" name="campo" required>
 					    	<!-- selected disabled Esto sirve para que una opcion no se pueda escoger -->
@@ -76,10 +76,10 @@
 					    </div>
 					</div>
 					
-				  	<div class="col-12 col-md-1 my-3">
+				  	<div class="col-12 col-md-2 my-3">
 				    	<button class="btn btn-primary" type="submit">Guardar</button>
 				  	</div>
-				  	<div class="col-12 col-md-1 my-3">
+				  	<div class="col-12 col-md-2 my-3">
 				  		<a href="{{route('usuarios')}}" class="btn btn-danger btn-sm">
 				  			Salir
 				  		</a>

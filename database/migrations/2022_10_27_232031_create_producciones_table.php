@@ -16,13 +16,18 @@ return new class extends Migration
         Schema::create('producciones', function (Blueprint $table) {
             $table->id();
             $table->date('fecha');
-            $table->string('cinta');
-            $table->string('T_viajes')->nullable();
-            $table->string('T_horas')->nullable();
-            $table->string('H_efectivas')->nullable();
-            $table->string('T_produccion')->nullable();
-            $table->string('productividad')->nullable();
-            $table->string('T_balanza')->nullable();
+            $table->unsignedBigInteger('blending_id')->nullable();
+            $table->integer('T_viajes')->nullable();
+            $table->time('T_horas')->nullable();
+            $table->time('H_efectivas')->nullable();
+            $table->integer('T_produccion')->nullable();
+            $table->integer('productividad')->nullable();
+            $table->integer('T_balanza')->nullable();
+
+            $table->foreign('blending_id')
+                    ->references('id')->on('blendings')
+                    ->onDelete('set null');
+
             $table->timestamps();
         });
     }

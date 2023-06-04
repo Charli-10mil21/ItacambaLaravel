@@ -12,8 +12,6 @@ use App\Models\Perforacione;
 use App\Models\Laboratorio;
 use App\Models\Blending;
 use App\Models\Produccione;
-use App\Models\Panele;
-
 
 class InformePlaniController extends Controller
 {
@@ -32,10 +30,7 @@ class InformePlaniController extends Controller
 
     public function produccion(){
 
-        $producs = Produccione::paginate(5);
-        $paneles = Panele::paginate(5);
-
-        return view('admin.informeProduccion', compact('producs', 'paneles'));
+        return view('admin.informeProduccion');
 
     }
 

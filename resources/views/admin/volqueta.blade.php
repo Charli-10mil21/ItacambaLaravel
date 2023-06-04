@@ -6,7 +6,7 @@
 @section('content')
 
 <div class="container py-4">
-		<div class="row my-4">
+		{{-- <div class="row my-4">
 		  <form action=" ">
 		    <div class="form-row">
 		      <div class="col-sm-4 my-1">
@@ -17,7 +17,7 @@
 		      </div>
 		    </div>
 		  </form>
-		</div>
+		</div> --}}
 		<div class="row my-4">
 		  <table class="table">
 		    <thead>
@@ -99,11 +99,10 @@
 					<div class="col-md-4">
 					    <label for="area" class="form-label">Area destinado</label>
 					    <select class="form-select" id="area" name="area" required>
-					      <option selected disabled value="">
+					      <option>
 					      		Explotacion
 					      </option>
 					      <option>Produccion</option>
-					      <option>Expedicion</option>
 					    </select>
 					    <div class="invalid-feedback">
 					      Escoja un campo valido

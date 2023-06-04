@@ -7,6 +7,72 @@
 	<h1>
 		Panel Central
 	</h1>
+
+	<div class="row">
+		@if(session('mensaje')) 
+			<div class="alert alert-success">
+				{{session('mensaje')}}
+			</div>
+		@endif
+		<button class="btn btn-primary " type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+		Registrar Nueva Turno
+		</button>
+		<div class="collapse" id="collapseExample">
+			<div class="card card-body">
+			<form class="row form m-3 needs-validation" action="{{route('paneles.store')}}" method="post">
+				@csrf
+				<div class="col-md-4">
+					<label for="nombre" class="form-label">Nombre Encargado</label>
+						<input type="text" class="form-control" id="nombre" name="nombre" required>
+						<div class="invalid-feedback">
+						inserte nombre valido
+						</div>
+				</div>
+				<div class="col-md-4">
+					<label for="turno_id" class="form-label">Turno</label>
+					  <select name="turno_id" id="turno_id" class="form-control">
+						  <option value=" ">--Escoja un turno--</option>
+						  @foreach($turnos as $turno)
+							  <option value="{{$turno->id}}">{{$turno->name}}</option>
+						  @endforeach()
+						  </select>
+					  <div class="invalid-feedback">
+						inserte puntos validos
+					  </div>
+				</div>
+				<div class="col-md-4">
+					<label for="produccione_id" class="form-label">Produccion diaria</label>
+					  <select name="produccione_id" id="produccione_id" class="form-control">
+						  <option value=" ">--Escoje la fecha de hoy--</option>
+						  @foreach($producciones as $pro)
+							  <option value="{{$pro->id}}">{{$pro->fecha}}</option>
+						  @endforeach()
+						</select>
+					  <div class="invalid-feedback">
+						inserte puntos validos
+					  </div>
+				</div>
+				<div class="col-md-4">
+					<label for="HoraIni" class="form-label">Hora Inicio</label>
+						<input type="time" class="form-control" id="HoraIni" name="HoraIni" required>
+						<div class="invalid-feedback">
+						inserte puntos validos
+						</div>
+				</div>
+
+				<div class="col-12 my-3">
+					<button class="btn btn-primary" type="submit">Registrar</button>
+				</div>
+			</form>
+				<!-- <a href="{{route('viajes.index')}} ">
+					<div class="col-12 my-3">
+						<button class="btn btn-primary" type=" ">Iniciar Control</button>
+					</div>	
+				</a> -->
+			</div>
+		</div>
+	</div>
+
 		<div class="row my-4">
 		  <form action=" ">
 		    <div class="form-row">
@@ -26,10 +92,12 @@
 		    <thead>
 		      <tr>
 		        <th scope="col">#id</th>
-		       	<th scope="col">Fecha</th>
 		       	<th scope="col">Nombre Encargado</th>
 		       	<th scope="col">Turno</th>		       	
-		       	<th scope="col">Blending_id</th>		        
+		       	<th scope="col">Produccion</th>	
+				<th scope="col">Horas Inicio</th>
+				<th scope="col">Horas Fin</th>
+				<th scope="col">Horas Total</th>        
 		        <th scope="col">Horas Efectivas</th>
 		        <th scope="col">Nº Volquetas</th>
 		        <th scope="col">Viajes total</th>
@@ -42,10 +110,12 @@
 		       @foreach($items as $item)
 		      <tr>
 		        <th scope="row">{{$item->id}}</th>
-		        <td>{{$item->fecha}}</td>
 		        <td>{{$item->nombre}}</td>
-		        <td>{{$item->turno}}</td>
-		        <td>{{$item->blending_id}}</td>
+		        <td>{{$item->turno_id}}</td>
+				<td>{{$item->produccione_id}}</td>
+				<td>{{$item->HoraIni}}</td>
+				<td>{{$item->HoraFin}}</td>
+				<td>{{$item->HorasT}}</td>
 		        <td>{{$item->HorasEfectivas}}</td>
 		        <td>{{$item->N_volquetas}}</td>
 		        <td>{{$item->N_viajes}}</td>
@@ -69,81 +139,6 @@
 		  {{ $items->links('pagination::bootstrap-4') }}
 		</div>
 
-		<div class="row">
-				@if(session('mensaje')) 
-					<div class="alert alert-success">
-						{{session('mensaje')}}
-					</div>
-				@endif
-			  <button class="btn btn-primary " type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-			    Registrar Nueva Turno
-			  </button>
-			<div class="collapse" id="collapseExample">
-			  <div class="card card-body">
-			   	<form class="row form m-3 needs-validation" action="{{route('paneles.store')}}" method="post">
-			   		@csrf
-				  	<div class="col-md-6">
-				    	<label for="fecha" class="form-label">Fecha</label>
-				    	<input type="date" class="form-control" id="fecha" name="fecha" required>
-				    	<div class="valid-feedback">
-				      	Looks good!
-				    	</div>
-				  	</div>
-					<div class="col-md-4">
-					    <label for="nombre" class="form-label">Nombre Encargado</label>
-					      <input type="text" class="form-control" id="nombre" name="nombre" required>
-					      <div class="invalid-feedback">
-					        inserte nombre valido
-					      </div>
-					</div>
-					<div class="col-md-4">
-					    <label for="turno" class="form-label">Turno</label>
-					      <input type="text" class="form-control" id="turno" name="turno" required>
-					      <div class="invalid-feedback">
-					        inserte puntos validos
-					      </div>
-					</div>
-					<div class="col-md-4">
-					    <label for="blending_id" class="form-label">Blending</label>
-					      <input type="text" class="form-control" id="blending_id" name="blending_id">
-					      <div class="invalid-feedback">
-					        inserte puntos validos
-					      </div>
-					</div>
-					<div class="col-md-4">
-					    <label for="produccione_id" class="form-label">Produccion</label>
-					      <input type="text" class="form-control" id="produccione_id" name="produccione_id">
-					      <div class="invalid-feedback">
-					        inserte puntos validos
-					      </div>
-					</div>
-					<div class="col-md-4">
-					    <label for="topografia_id" class="form-label">Nivel</label>
-					      <input type="text" class="form-control" id="topografia_id" name="topografia_id">
-					      <div class="invalid-feedback">
-					        inserte puntos validos
-					      </div>
-					</div>
-					<div class="col-md-4">
-					    <label for="N_volquetas" class="form-label">Cantidad Volquetas</label>
-					      <input type="text" class="form-control" id="N_volquetas" name="N_volquetas" required>
-					      <div class="invalid-feedback">
-					        inserte puntos validos
-					      </div>
-					</div>
-
-					<div class="col-12 my-3">
-				    	<button class="btn btn-primary" type="submit">Registrar</button>
-				  	</div>
-				</form>
-					<!-- <a href="{{route('viajes.index')}} ">
-						<div class="col-12 my-3">
-				    		<button class="btn btn-primary" type=" ">Iniciar Control</button>
-				  		</div>	
-					</a> -->
-			  </div>
-			</div>
-		</div>
 	
 	</div>
 

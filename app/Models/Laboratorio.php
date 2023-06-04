@@ -10,6 +10,11 @@ class Laboratorio extends Model
     use HasFactory;
 
     protected $guarded =[];
+    
+    //relacion uno a muchos 
+    public function descripcionBlendings(){
+        return $this->hasMany('App\Models\DescBlending');
+    }
 
     //relacion uno a uno inversa
     public function muestra(){

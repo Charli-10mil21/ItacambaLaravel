@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('detalle');
             $table->time('horaIni');
             $table->time('horaFin')->nullable();
+            $table->time('Duracion')->nullable();
 
             $table->foreign('panele_id')
                     ->references('id')->on('paneles')

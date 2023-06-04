@@ -20,8 +20,11 @@ class Poligono extends Model
 
         return $this->hasMany('App\Models\Perforacione');
     }
-    public function blendings(){
 
-        return $this->hasMany('App\Models\Blending');
+    public function descripcionBlendings(){
+        return $this->hasMany('App\Models\DescBlending');
     }
+
+
+    
 }

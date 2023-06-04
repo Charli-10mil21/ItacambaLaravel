@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('maquinarias', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('nombre')->nullable();
+            $table->string('codigo')->nullable();
+            $table->string('descripcion')->nullable();
             $table->string('estado');
-            $table->string('horasA')->nullable();
+            $table->time('horasA')->nullable();
             $table->timestamps();
         });
     }

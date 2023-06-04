@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Turno extends Model
 {
     use HasFactory;
+
+    protected $guarded =[];
+
+    //relacion uno a muchos 
+
+    public function paneles(){
+        return $this->hasMany('App\Models\Panele');
+    }
 }

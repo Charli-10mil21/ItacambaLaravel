@@ -17,24 +17,18 @@ return new class extends Migration
             $table->id();
             $table->string('codigo');
             $table->date('fecha');
-            $table->string('fsc');
-            $table->string('ms');
-            $table->string('ma');
-            $table->integer('toneladas');
-            $table->integer('viajes');
+            $table->time('HoraIni');
+            $table->string('estado');
+            $table->unsignedBigInteger('materia_id')->nullable();
             $table->unsignedBigInteger('planificacion_id')->nullable();
-            $table->unsignedBigInteger('topografia_id')->nullable();
-            $table->unsignedBigInteger('poligono_id')->nullable();
+            $table->string('Observaciones')->nullable();
 
-             $table->foreign('planificacion_id')
+
+            $table->foreign('materia_id')
+                    ->references('id')->on('materias')
+                    ->onDelete('set null');
+            $table->foreign('planificacion_id')
                     ->references('id')->on('planificacions')
-                    ->onDelete('set null');
-
-            $table->foreign('topografia_id')
-                    ->references('id')->on('topografias')
-                    ->onDelete('set null');
-            $table->foreign('poligono_id')
-                    ->references('id')->on('poligonos')
                     ->onDelete('set null');
 
             $table->timestamps();

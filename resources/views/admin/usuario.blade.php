@@ -6,7 +6,7 @@
 @section('content')
 
 <div class="container py-4">
-		<div class="row my-4">
+		{{-- <div class="row my-4">
 		  <form action=" ">
 		    <div class="form-row">
 		      <div class="col-sm-4 my-1">
@@ -17,7 +17,7 @@
 		      </div>
 		    </div>
 		  </form>
-		</div>
+		</div> --}}
 		<div class="row my-4">
 		  <table class="table">
 		    <thead>
@@ -112,7 +112,6 @@
 					      </option>
 					      <option>Planificacion</option>
 					      <option>Produccion</option>
-					      <option>Expedicion</option>
 					    </select>
 					    <div class="invalid-feedback">
 					      Please select a valid state.

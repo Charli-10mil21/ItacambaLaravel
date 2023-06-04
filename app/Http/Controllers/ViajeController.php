@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Viaje;
 use App\Models\Maquinaria;
 use App\Models\Actividade;
+use App\Models\Panele;
 
 class ViajeController extends Controller
 {
@@ -22,7 +23,7 @@ class ViajeController extends Controller
     public function store(Request $request){
 
         $item = Viaje::create($request->all());
-
+    
           return back()->with('mensaje', 'Viaje Resgistrado');
     }
 
@@ -46,5 +47,44 @@ class ViajeController extends Controller
          $item = Viaje::findOrFail($id);
          $item->delete();
           return back()->with('mensaje', 'Viaje Eliminado');
+    }
+
+    public function sumar($id){
+
+        $item = Viaje::findOrFail($id);
+        $idPanel = $item->panele_id;
+        $viajest = Panele::find($idPanel);
+        $viajest->N_viajes += 1;
+        $viajest->toneladas_total = $viajest->N_viajes*26;
+        $viajest->save();
+        
+        if ($item->n_viajes === null){
+             $item->n_viajes = 1;
+             $item->save();
+             return back()->with('mensaje', 'viaje igual uno');
+         } else {
+            $item->increment('n_viajes', 1);
+            return back()->with('mensaje', 'viaje añadido');
+         }
+       
+   }
+
+
+   public function restar($id){
+
+    $item = Viaje::findOrFail($id);
+    $idPanel = $item->panele_id;
+    $viajest = Panele::find($idPanel);
+    $viajest->N_viajes -= 1;
+    $viajest->toneladas_total = $viajest->N_viajes*26;
+    $viajest->save();
+
+
+    if ($item->n_viajes === null){
+        return back()->with('mensaje', 'no existen viajes');
+    }else {
+        $item->decrement('n_viajes', 1);
+     return back()->with('mensaje', 'viaje restado');
+    }
     }
 }

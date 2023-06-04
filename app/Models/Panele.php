@@ -10,16 +10,14 @@ class Panele extends Model
     use HasFactory;
     protected $guarded =[];
     //relacion uno a muchos (inversa)
-    public function topografia(){
-        return $this->belongsTo('App\Models\Topografia');
-    }
 
-    public function blending(){
-        return $this->belongsTo('App\Models\Blending');
-    }
 
     public function produccion(){
         return $this->belongsTo('App\Models\Produccione');
+    }
+
+    public function turno(){
+        return $this->belongsTo('App\Models\Turno');
     }
 
 
@@ -30,5 +28,9 @@ class Panele extends Model
 
      public function actividades(){
         return $this->hasMany('App\Models\Actividade');
+    }
+
+    public function usoMaquinarias(){
+        return $this->hasMany('App\Models\DescMaquinaria');
     }
 }

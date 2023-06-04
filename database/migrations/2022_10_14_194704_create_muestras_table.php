@@ -15,11 +15,9 @@ return new class extends Migration
     {
         Schema::create('muestras', function (Blueprint $table) {
             $table->id();
-            $table->integer('lote');
-            $table->string('tipo');
+            $table->string('codigo');
             $table->unsignedBigInteger('perforacion_id')->nullable();
             $table->unsignedBigInteger('poligono_id')->nullable();
-            $table->unsignedBigInteger('materia_id')->nullable();
 
             $table->foreign('perforacion_id')
                     ->references('id')->on('perforaciones')
@@ -27,10 +25,6 @@ return new class extends Migration
             $table->foreign('poligono_id')
                     ->references('id')->on('poligonos')
                     ->onDelete('set null');
-            $table->foreign('materia_id')
-                    ->references('id')->on('materias')
-                    ->onDelete('set null');
-            $table->timestamps();
         });
     }
 

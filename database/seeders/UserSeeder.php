@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
         $user->apellido = 'Martinez Velasco';
         $user->email = 'carlos@gmail.com';
         $user->password = '1234';
-        $user->campo = 'Administrador';
+        $user->campo = 'Administracion';
         $user->telefono = '78723126';
 
         $user->save();

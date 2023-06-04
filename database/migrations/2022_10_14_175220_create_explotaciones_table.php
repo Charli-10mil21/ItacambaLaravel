@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('volumen');
             $table->string('tonelaje');
-            $table->string('tiempo');
+            $table->date('fecha')->nullable();
             $table->string('taladros');
             $table->unsignedBigInteger('topografia_id')->nullable();
 

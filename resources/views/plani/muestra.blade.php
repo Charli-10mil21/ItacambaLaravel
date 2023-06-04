@@ -7,7 +7,7 @@
 	<h1>
 		Muestra
 	</h1>
-		<div class="row my-4">
+		{{-- <div class="row my-4">
 		  <form action=" ">
 		    <div class="form-row">
 		      <div class="col-sm-4 my-1">
@@ -18,7 +18,7 @@
 		      </div>
 		    </div>
 		  </form>
-		</div>
+		</div> --}}
 
 
 		<div class="row my-4">
@@ -26,11 +26,9 @@
 		    <thead>
 		      <tr>
 		        <th scope="col">#id</th>
-		       	<th scope="col">Nº Muestra</th>
-		       	<th scope="col">Proyecto</th>
+		       	<th scope="col">Cod Muestra</th>
 		        <th scope="col">Perforacion</th>
 		        <th scope="col">Voladura</th>		        
-		        <th scope="col">Materia Prima</th>
 		        <th scope="col">Ver detalle</th>
 		      </tr>
 		    </thead>
@@ -38,11 +36,9 @@
 		     @foreach($items as $item)
 		      <tr>
 		        <th scope="row">{{$item->id}}</th>
-		        <td>{{$item->lote}}</td>
-		        <td>{{$item->tipo}}</td>
+		        <td>{{$item->codigo}}</td>
 		        <td><a href="{{route('perforaciones.edit',$item->perforacion_id)}}">{{$item->perforacion_id}}</a> </td>
 		        <td><a href="{{route('poligonos.edit',$item->poligono_id)}}">{{$item->poligono_id}}</a> </td>
-		        <td><a href="{{route('materias.edit',$item->materia_id)}}">{{$item->materia_id}}</a></td>
 		         <td>
 		           <a href="{{route('muestras.edit',$item->id)}} " class="btn btn-warning btn-sm"><img src="img/editar2.png" alt="" height="25px"></a>
 
@@ -76,28 +72,20 @@
 			   		@csrf
 		  			
 				  	
-					<div class="col-md-4">
-					    <label for="tipo" class="form-label">Proyecto</label>
-					      <input type="text" class="form-control" id="tipo" name="tipo" required>
+					<div class="col-md-3">
+					    <label for="codigo" class="form-label">Cod. Muestra</label>
+					      <input type="text" class="form-control" id="codigo" name="codigo" required>
 					      <div class="invalid-feedback">
 					        inserte puntos validos
 					      </div>
 					</div>
-
-					<div class="col-md-6">
-				    	<label for="lote" class="form-label">Lote</label>
-				    	<input type="text" class="form-control" id="lote" name="lote" required>
-				    	<div class="valid-feedback">
-				      	Looks good!
-				    	</div>
-				  	</div>
-					<div class="col-md-4">
+					<div class="col-md-3">
 					    <label for="perforacion_id" class="form-label">Perforacion</label>
 					      <select name="perforacion_id" id="perforacion_id" class="form-control">
   							<option value=" ">--Escoja el Area de perforacion--</option>
   							@foreach($perforaciones as $perfo)
   								<option value="{{$perfo->id}}">
-  									{{$perfo->numero}}
+  									{{$perfo->Codigo}}
   								</option>
   							@endforeach()
   							</select>
@@ -105,27 +93,13 @@
 					        inserte puntos validos
 					      </div>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-3">
 					    <label for="poligono_id" class="form-label">Poligono</label>
 					      <select name="poligono_id" id="poligono_id" class="form-control">
   							<option value=" ">--Escoja el Area de la voladura--</option>
   							@foreach($poligonos as $poli)
   								<option value="{{$poli->id}}">
   									{{$poli->nombre}}
-  								</option>
-  							@endforeach()
-  							</select>
-					      <div class="invalid-feedback">
-					        inserte puntos validos
-					      </div>
-					</div>
-					<div class="col-md-4">
-					    <label for="materia_id" class="form-label">materia</label>
-					      <select name="materia_id" id="materia_id" class="form-control">
-  							<option value=" ">--Escoja materia prima--</option>
-  							@foreach($materias as $mate)
-  								<option value="{{$mate->id}}">
-  									{{$mate->name}}
   								</option>
   							@endforeach()
   							</select>

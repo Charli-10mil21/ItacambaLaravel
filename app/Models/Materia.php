@@ -13,7 +13,8 @@ class Materia extends Model
 
      //relacion uno a muchos
 
-    public function muestras(){
-        return $this->hasMany('App\Models\Muestra');
+     public function blendings(){
+        return $this->hasMany('App\Models\Blending');
     }
+
 }

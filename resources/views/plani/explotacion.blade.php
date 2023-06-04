@@ -7,7 +7,7 @@
 	<h1>
 		Explotacion
 	</h1>
-		<div class="row my-4">
+		{{-- <div class="row my-4">
 		  <form action=" ">
 		    <div class="form-row">
 		      <div class="col-sm-4 my-1">
@@ -18,7 +18,7 @@
 		      </div>
 		    </div>
 		  </form>
-		</div>
+		</div> --}}
 
 
 		<div class="row my-4">
@@ -28,7 +28,7 @@
 		        <th scope="col">#id</th>
 		       	<th scope="col">Volumen</th>
 		       	<th scope="col">Tonelaje</th>
-		        <th scope="col">tiempo</th>
+		        <th scope="col">Fecha</th>
 		        <th scope="col">taladros</th>
 		        <th scope="col">Area</th>
 		        <th scope="col">Ver detalle</th>
@@ -40,7 +40,7 @@
 		        <th scope="row">{{$item->id}}</th>
 		        <td>{{$item->volumen}}</td>
 		        <td>{{$item->tonelaje}}</td>
-		        <td>{{$item->tiempo}}</td>
+		        <td>{{$item->fecha}}</td>
 		        <td>{{$item->taladros}}</td>
 		        <td><a href="{{route('topografias.edit',$item->topografia_id)}}">{{$item->topografia_id}}</a></td>
 		         <td>
@@ -90,8 +90,8 @@
 					      </div>
 					</div>
 					<div class="col-md-4">
-					    <label for="tiempo" class="form-label">Tiempo</label>
-					      <input type="text" class="form-control" id="tiempo" name="tiempo" aria-describedby="inputGroupPrepend" required>
+					    <label for="fecha" class="form-label">fecha</label>
+					      <input type="date" class="form-control" id="fecha" name="fecha"  >
 					      <div class="invalid-feedback">
 					        inserte puntos validos
 					      </div>

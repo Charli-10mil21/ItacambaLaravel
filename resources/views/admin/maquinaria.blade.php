@@ -24,6 +24,7 @@
 		      <tr>
 		        <th scope="col">#id</th>
 		        <th scope="col">Nombre</th>
+				<th scope="col">Codigo</th>
 		        <th scope="col">Estado</th>
 		        <th scope="col">Horas Acumuladas</th>
 		        <th scope="col">Acciones</th>
@@ -34,6 +35,7 @@
 		      <tr>
 		        <th scope="row">{{$item->id}}</th>
 		        <td>{{$item->nombre}}</td>
+				<td>{{$item->codigo}}</td>
 		        <td>{{$item->estado}}</td>
 		        <td>{{$item->horasA}}</td>
 		         <td>
@@ -68,9 +70,16 @@
 			   	<form class="row form m-3 needs-validation" action="{{route('maquinarias.store')}}" method="POST">
 			   		@csrf 
 
-		  			<div class="col-md-12">
+		  			<div class="col-md-6">
 				    	<label for="nombre" class="form-label">Nombre</label>
 				    	<input type="text" class="form-control" id="nombre" name="nombre"  required>
+				    	<div class="valid-feedback">
+				      	Looks good!
+				    	</div>
+				  	</div>
+					  <div class="col-md-6">
+				    	<label for="codigo" class="form-label">codigo</label>
+				    	<input type="text" class="form-control" id="codigo" name="codigo"  required>
 				    	<div class="valid-feedback">
 				      	Looks good!
 				    	</div>
@@ -88,13 +97,13 @@
 					      Escoja un campo valido
 					    </div>
 					</div>
-		  			<div class="col-md-4">
+		  			{{-- <div class="col-md-4">
 		    			<label for="horasA" class="form-label">Hora Acumulada</label>
-		    			<input type="text" class="form-control" id="horasA" name="horasA" >
+		    			<input type="int" class="form-control" id="horasA" name="horasA" value="00:00">
 		    			<div class="valid-feedback">
 		      			Looks good!
 		    			</div>
-		  			</div>
+		  			</div> --}}
 				  	<div class="col-12 my-3">
 				    	<button class="btn btn-primary" type="submit">Registrar</button>
 				  	</div>

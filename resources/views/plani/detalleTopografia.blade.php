@@ -19,7 +19,7 @@
 				
 				@csrf 
 				@method('put')
-		  			<div class="col-md-12">
+		  			<div class="col-md-2">
 				    	<label for="area" class="form-label">Nivel</label>
 				    	<input type="text" class="form-control" id="area" name="area" value="{{$item->area}}"  required>
 				    	<div class="valid-feedback">
@@ -41,10 +41,10 @@
 					      </div>
 					</div>
 					
-				  	<div class="col-12 col-md-1 my-3">
+				  	<div class="col-12 col-md-2 my-3">
 				    	<button class="btn btn-primary" type="submit">Guardar</button>
 				  	</div>
-				  	<div class="col-12 col-md-1 my-3">
+				  	<div class="col-12 col-md-2 my-3">
 				  		<a href="{{route('topografias.index')}}" class="btn btn-danger btn-sm">
 				  			Salir
 				  		</a>

@@ -20,6 +20,9 @@ use App\Http\Controllers\ParadaController;
 use App\Http\Controllers\ActividadeController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\InformePlaniController;
+use App\Http\Controllers\DescBlendingController;
+use App\Http\Controllers\DescMaquinariaController;
+
 
 
    
@@ -69,9 +72,22 @@ Route::resource('muestras',MuestraController::class);
 Route::resource('materias',MateriaController::class);
 Route::resource('laboratorios',LaboratorioController::class);
 Route::resource('blendings',BlendingController::class);
+Route::resource('descblendings',DescBlendingController::class);
+// Route::post('blendings', [BlendingController::class, 'guardar'])->name('guardarBlending');
 
-    //reporte
+    //importar datos 
+    Route::post('importar/laboratorio',[LaboratorioController::class,'importarStore'] )->name('importarStore');
+
+
+    //reporte pdf
 Route::get('donwload_pdf/{id}',[BlendingController::class,'generar_pdf'] )->name('pdf');
+Route::get('donwload_pdf_panel_control/{id}',[PaneleController::class,'generar_pdf'] )->name('pdfPanel');
+Route::get('donwload_pdf_produccion/{id}',[ProduccioneController::class,'generar_pdf'] )->name('pdfProduccion');
+
+    //reporte excel
+Route::get('donwload_excel_panel_control/{id}',[PaneleController::class,'generar_excel'] )->name('excelPanel');
+Route::get('donwload_excel_produccion/{id}',[ProduccioneController::class,'generar_excel'] )->name('excelProduccion');
+   
 
     //ajax
 Route::post('planificaciones/all',[InformePlaniController::class, 'all']);
@@ -81,10 +97,16 @@ Route::post('/informePlaniDetalle/planiBlendings/all',[InformePlaniController::c
 
 
   //area produccion
+Route::get('/produccionesIndex', function() { return view('pro.home');})->name('produccionIndex');
+Route::get('/produccionesIndex', function() { return view('pro.home');})->name('produccionIndex');
+Route::put('producciones/{id}/sumarviajes', [ProduccioneController::class, 'actualizar'])->name('actualizar');
 Route::resource('producciones',ProduccioneController::class);
 Route::resource('paneles',PaneleController::class);
 Route::resource('viajes', ViajeController::class);
+Route::put('viajes/{id}/sumarviajes', [ViajeController::class, 'sumar'])->name('sumarviaje');
+Route::put('viajes/{id}/restarviajes', [ViajeController::class, 'restar'])->name('restarviaje');
 Route::resource('paradas', ParadaController::class);
+Route::resource('descMaquinarias', DescMaquinariaController::class);
 Route::resource('actividades', ActividadeController::class);
 
 

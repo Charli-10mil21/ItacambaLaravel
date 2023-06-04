@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Blending;
-use App\Models\Planificacion;
+use App\Models\DescBlending;
+use App\Models\Materia;
 use App\Models\Topografia;
+use App\Models\Planificacion;
+use App\Models\Poligono;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class BlendingController extends Controller
@@ -13,9 +16,9 @@ class BlendingController extends Controller
      public function index(){
 
          $items = Blending::paginate(5);
-         $topografias = Topografia::all();
+         $materiales = Materia::all();
          $planificaciones= Planificacion::all();
-        return view('plani.blending', compact('items','topografias','planificaciones'));
+        return view('plani.blending', compact('items','materiales','planificaciones'));
     }
 
     public function store(Request $request){
@@ -25,17 +28,48 @@ class BlendingController extends Controller
           return back()->with('mensaje', 'Informe Resgistrado');
     }
 
+    public function guardar(Request $request){
+
+        
+        $blending = new Blending();
+
+
+        $blending->codigo = $request->codigo;
+        $blending->fecha = $request->fecha;
+        $blending->fsc = $request->fsc;
+        $blending->ms = $request->ms;
+        $blending->ma = $request->ma;
+        $blending->toneladas = $request->toneladas;
+        $blending->viajes = $request->viajes;
+        $blending->planificacion_id = $request->planificacion_id;
+        $blending->save();
+        //esta funcion es de tinker de laravel qeu sirve para guardar una variable con la relacion muchos a muchos
+        $blending->topografias()->attach($request->topografia_id);
+
+        $blending->save();
+
+
+
+
+        return back()->with('mensaje', 'blending Resgistrado');
+    }
+
     public function edit($id){
 
         $item = Blending::find($id);
+        $topografia = $item->topografias;
         $plani= $item->planificacion;
-        $topografia= $item->topografia;
-        $poligono= $item->poligono;
+        
+        // $topografia= $item->topografia;
+        // $poligono= $item->poligono;
+        $materiales = Materia::all();
         $laboratorios= $item->laboratorios;
         $topografias = Topografia::all();
         $planificaciones= Planificacion::all();
+        $descripciones = DescBlending::paginate(5);
+        $poligonos = Poligono::all();
 
-        return view('plani.detalleBlending', compact('item','plani','topografia','topografias','planificaciones','laboratorios','poligono'));
+        return view('plani.detalleBlending', compact('item','plani','topografias','planificaciones','laboratorios','topografia','materiales','poligonos','descripciones'));
 
     }
 

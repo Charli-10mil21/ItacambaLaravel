@@ -11,9 +11,6 @@ class Muestra extends Model
 
     protected $guarded =[];
     //relacion uno a muchos (inversa)
-    public function materia(){
-        return $this->belongsTo('App\Models\Materia');
-    }
     public function perforacion(){
         return $this->belongsTo('App\Models\Perforacione');
     }

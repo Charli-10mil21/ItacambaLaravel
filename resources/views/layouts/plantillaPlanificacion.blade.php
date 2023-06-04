@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>@yield('title')</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-	<link rel="stylesheet" href="admin.css">
+	<link rel="stylesheet" href="{{ asset('admin.css')}}">
 
 	<style>	
 
@@ -20,7 +20,7 @@
   			<div class="container-fluid my-3">
     			<a class="navbar-brand" href="{{route('admin')}}">
 
-      				<img src="img/logo-itacamba.png" alt="" width="250" height="50">
+      				<img src="{{ asset('img/logo-itacamba.png') }}" alt="" width="250" height="50">
     			</a>
     			
     			<button type = "button" class = "navbar-toggler" data-bs-toggle="collapse" data-bs-target="#MenuNavegacion">

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\LaboratorioImport;
 use Illuminate\Http\Request;
 use App\Models\Laboratorio;
 use App\Models\Muestra;
 use App\Models\Blending;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class LaboratorioController extends Controller
 {
@@ -48,4 +51,20 @@ class LaboratorioController extends Controller
          $item->delete();
           return back()->with('mensaje', 'Informe Eliminado');
     }
+
+    public function importarStore(Request $request){
+
+        $file = null;
+        $request->validate([
+            'file' => 'required|mimes:csv,xlsx'
+        ]);
+
+        $file =$request->file('file');
+
+        
+        // return Excel::toCollection(new LaboratorioImport, $file);
+        Excel::import(new LaboratorioImport, $file);
+         return back()->with('mensaje', 'exito');
+   }
+
 }

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('perforaciones', function (Blueprint $table) {
             $table->id();
-            $table->string('numero');
+            $table->string('Codigo');
             $table->string('coordenadas');
             $table->string('profundidad');
             $table->unsignedBigInteger('poligono_id')->nullable();
