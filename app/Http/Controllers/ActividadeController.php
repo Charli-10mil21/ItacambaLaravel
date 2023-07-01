@@ -32,6 +32,14 @@ class ActividadeController extends Controller
 
          $item = Actividade::findOrFail($id);
          $item->update($request->all());
+         $horaIni = $item->horaIni;
+         $horaFin = $item->horaFin;
+         // Calcular la diferencia de tiempo
+         $duracion = strtotime($horaFin) - strtotime($horaIni);
+         // Convertir la diferencia de tiempo a formato horas:minutos:segundos
+         $duracionFormateada = gmdate("H:i:s", $duracion);
+         $item->duracion = $duracionFormateada;
+         $item->save();
           return back()->with('mensaje', 'Actividad Editada');
     }
 

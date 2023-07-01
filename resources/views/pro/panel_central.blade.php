@@ -64,11 +64,6 @@
 					<button class="btn btn-primary" type="submit">Registrar</button>
 				</div>
 			</form>
-				<!-- <a href="{{route('viajes.index')}} ">
-					<div class="col-12 my-3">
-						<button class="btn btn-primary" type=" ">Iniciar Control</button>
-					</div>	
-				</a> -->
 			</div>
 		</div>
 	</div>

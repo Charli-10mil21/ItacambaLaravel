@@ -20,8 +20,9 @@ return new class extends Migration
             $table->string('produccion');
             $table->date('fechaIni');
             $table->date('fechaFin')->nullable();
-            $table->string('duracion')->nullable();
-            $table->unsignedBigInteger('user_id')->unique()->nullable();
+            $table->integer('toneladas_t')->nullable();
+            $table->integer('viajes_t')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
 
             $table->foreign('user_id')
                     ->references('id')->on('users')

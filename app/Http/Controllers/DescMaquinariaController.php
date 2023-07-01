@@ -34,45 +34,43 @@ class DescMaquinariaController extends Controller
    public function update(Request $request, $id){
 
         $item = DescMaquinaria::findOrFail($id);
-        $maquina = Maquinaria::find($item->maquinaria_id);
+        // $maquina = Maquinaria::find($item->maquinaria_id);
 
         $item->update($request->all());
 
-        $hora1 = $maquina->horasA; // Hora en formato de time
-        $hora2 = $item->horaUso; // Hora en formato de time
+        // $hora1 = $maquina->horasA; // Hora en formato de time
+        // $hora2 = $item->horaUso; // Hora en formato de time
 
-        $fecha1 = new DateTime($hora1); // Convertimos $hora1 en un objeto DateTime
-        $fecha2 = new DateTime($hora2); // Convertimos $hora2 en un objeto DateTime
+        // $fecha1 = new DateTime($hora1); // Convertimos $hora1 en un objeto DateTime
+        // $fecha2 = new DateTime($hora2); // Convertimos $hora2 en un objeto DateTime
 
-        $dateInterval = new DateInterval('PT'.$fecha2->format('H').'H'.$fecha2->format('i').'M'); // Creamos un objeto DateInterval a partir de la hora de $fecha2
-        date_add($fecha1, $dateInterval); // Sumamos el objeto DateInterval a $fecha1
+        // $dateInterval = new DateInterval('PT'.$fecha2->format('H').'H'.$fecha2->format('i').'M'); // Creamos un objeto DateInterval a partir de la hora de $fecha2
+        // date_add($fecha1, $dateInterval); // Sumamos el objeto DateInterval a $fecha1
 
-        $maquina->horasA = $fecha1->format('H:i:s'); // Convertimos el resultado a formato de hora
+        // $maquina->horasA = $fecha1->format('G:i:s'); // Convertimos el resultado a formato de hora
         
-        $maquina->save();
+        // $maquina->save();
 
 
 
         /*usando carbon */
 
-        // $hora1 = $maquina->horasA; // Hora en formato de time
-        // $hora2 = $item->horaUso; // Hora en formato de time
+    // $item = DescMaquinaria::findOrFail($id);
+    // $maquina = Maquinaria::find($item->maquinaria_id);
 
-        // if (substr($hora1, 3, 1) === ':') {
-        //     $hora1 = substr_replace($hora1, '0', 3, 0);
-        // }
-        // if (substr($hora2, 3, 1) === ':') {
-        //     $hora2 = substr_replace($hora2, '0', 3, 0);
-        // }
+    // $item->update($request->all());
 
-        // $fecha1 = Carbon::createFromFormat('H:i:s', $hora1); // Convertimos $hora1 en un objeto Carbon
-        // $fecha2 = Carbon::createFromFormat('H:i:s', $hora2); // Convertimos $hora2 en un objeto Carbon
+    // $hora1 = $maquina->horasA; // Hora en formato de time
+    // $hora2 = $item->horaUso; // Hora en formato de time
 
-        // $fecha1->addHours($fecha2->hour)->addMinutes($fecha2->minute); // Sumamos las horas y minutos de $fecha2 a $fecha1
+    // $fecha1 = Carbon::createFromFormat('G:i:s', $hora1); // Convertimos $hora1 en un objeto Carbon
+    // $fecha2 = Carbon::createFromFormat('H:i:s', $hora2); // Convertimos $hora2 en un objeto Carbon
 
-        // $maquina->horasA = $fecha1->format('H:i:s'); // Convertimos el resultado a formato de hora
+    // $fecha1->addHours($fecha2->hour)->addMinutes($fecha2->minute)->addSeconds($fecha2->second); // Sumamos las horas, minutos y segundos de $fecha2 a $fecha1
 
-        // $maquina->save();
+    // $maquina->horasA = $fecha1->format('G:i:s'); // Convertimos el resultado a formato de hora
+
+    // $maquina->save();
         
          return back()->with('mensaje', 'Registro Editado');
    }

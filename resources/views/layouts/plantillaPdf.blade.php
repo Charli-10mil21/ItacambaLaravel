@@ -28,12 +28,9 @@
             padding: 4px;
             text-align: left;
         }
-		.caja p {
-			color: #0a56ad;
-		}
-		.caja{
-			border-top: 1px solid #0a56ad;
-		}
+		/* .caja p {
+			color: #393e44;
+		} */
 		.firmas{
 			margin-top: 40px;
 		}
@@ -47,14 +44,14 @@
 		<nav class=" navbar navbar-expand-md navbar-light bg-light border-3 border-bottom border-primary ">
   			<div class="container-fluid my-3">
 
-      				<img src="img/logo-itacamba.png" alt="" width="250" height="50">
+      				<img src="img/logo2.png" alt="" width="200" height="70">
   			</div>
 		</nav>
 	</header>
 
 	@yield('content')
-		
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.6/highcharts.js" charset="utf-8"></script>	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-	
 </body>
 </html>

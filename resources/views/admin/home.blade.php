@@ -13,7 +13,7 @@
 						<img src="img/user.png" alt="" height="90px">
 					</div>
 					<div class="text-center">
-						<button class="btn btn-outline-info  my-3 " >
+						<button class="btn btn-outline-primary  my-3 " >
 									Usuarios
 						</button>
 					</div>

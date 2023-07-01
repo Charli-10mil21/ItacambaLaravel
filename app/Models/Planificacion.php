@@ -24,4 +24,17 @@ class Planificacion extends Model
     public function blendings(){
         return $this->hasMany('App\Models\Blending');
     }
+
+    public function scopeFiltro($query, $filters){
+        $query->when($filters['name'] ?? null, function($query, $name){
+            $query->where('name', $name);
+        })->when($filters['user'] ?? null, function($query, $user){
+            $query->where('user_id', $user);
+        })->when($filters['fromdate'] ?? null, function($query, $fromdate){
+            $query->where('fechaIni', '>=', $fromdate);
+        })->when($filters['todate'] ?? null, function($query, $todate){
+            $query->where('fechaIni', '<=', $todate);
+        });
+
+    }
 }

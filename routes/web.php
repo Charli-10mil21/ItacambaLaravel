@@ -39,10 +39,12 @@ use App\Http\Controllers\DescMaquinariaController;
 */
 
 
-Route::get('login', [SessionController::class, 'create'])->name('login');
+Route::get('login', [SessionController::class, 'index'])->name('login');
 Route::post('/login', [SessionController::class, 'store']);
+Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
 
-Route::controller(AdminController::class)->group(function(){
+
+Route::controller(AdminController::class)->middleware('auth')->group(function(){
     Route::get('Administracion', 'admin')->name('admin');
     Route::get('Usuarios', 'usuario')->name('usuarios');
     Route::post('Usuarios', 'guardar')->name('usuarios.guardar');
@@ -63,7 +65,7 @@ Route::get('informeProduccion', [InformePlaniController::class, 'produccion'])->
 
 
     //area de planificacion
-Route::resource('planificacions',PlanificacionController::class);
+Route::resource('planificacions',PlanificacionController::class)->middleware('auth');
 Route::resource('topografias',TopografiaController::class);
 Route::resource('poligonos',PoligonoController::class);
 Route::resource('explotaciones',ExplotacioneController::class);
@@ -81,6 +83,8 @@ Route::resource('descblendings',DescBlendingController::class);
 
     //reporte pdf
 Route::get('donwload_pdf/{id}',[BlendingController::class,'generar_pdf'] )->name('pdf');
+Route::get('donwload_pdf_volqueta/{id}',[VolquetaController::class,'generar_pdf'] )->name('pdfVolqueta');
+Route::get('donwload_pdf_planificacion/{id}',[PlanificacionController::class,'generar_pdf'] )->name('pdfPlani');
 Route::get('donwload_pdf_panel_control/{id}',[PaneleController::class,'generar_pdf'] )->name('pdfPanel');
 Route::get('donwload_pdf_produccion/{id}',[ProduccioneController::class,'generar_pdf'] )->name('pdfProduccion');
 
@@ -97,8 +101,7 @@ Route::post('/informePlaniDetalle/planiBlendings/all',[InformePlaniController::c
 
 
   //area produccion
-Route::get('/produccionesIndex', function() { return view('pro.home');})->name('produccionIndex');
-Route::get('/produccionesIndex', function() { return view('pro.home');})->name('produccionIndex');
+Route::get('/produccionesIndex', function() { return view('pro.home');})->name('produccionIndex')->middleware('auth');
 Route::put('producciones/{id}/sumarviajes', [ProduccioneController::class, 'actualizar'])->name('actualizar');
 Route::resource('producciones',ProduccioneController::class);
 Route::resource('paneles',PaneleController::class);

@@ -8,6 +8,8 @@ use App\Models\Laboratorio;
 use App\Models\Muestra;
 use App\Models\Blending;
 use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 
 class LaboratorioController extends Controller
@@ -61,7 +63,7 @@ class LaboratorioController extends Controller
 
         $file =$request->file('file');
 
-        
+        // return Carbon::instance(Date::excelToDateTimeObject(44477));
         // return Excel::toCollection(new LaboratorioImport, $file);
         Excel::import(new LaboratorioImport, $file);
          return back()->with('mensaje', 'exito');

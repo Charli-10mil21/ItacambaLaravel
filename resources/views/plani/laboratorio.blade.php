@@ -7,7 +7,7 @@
 	<h1>
 		Laboratorio
 	</h1>
-		<div class="row my-4">
+		{{-- <div class="row my-4">
 		  <form action=" ">
 		    <div class="form-row">
 		      <div class="col-sm-4 my-1">
@@ -18,7 +18,7 @@
 		      </div>
 		    </div>
 		  </form>
-		</div>
+		</div> --}}
 
 
 		<div class="row my-4">
@@ -42,7 +42,6 @@
 		       	</th>
 		        <th scope="col">destino</th>
 		        <th scope="col">Muestra</th>
-		        <th scope="col">Blending</th>
 		        <th scope="col">Ver detalle</th>
 		      </tr>
 		    </thead>
@@ -64,8 +63,7 @@
 				<td>{{$item->MS}}</td>
 				<td>{{$item->MA}}</td>
 		        <td>{{$item->destino}}</td>
-		        {{-- <td><a href="{{route('muestras.edit',$item->muestra_id)}}">{{$item->muestra_id}}</a></td> --}}
-		        <td><a href=" ">{{$item->blending_id}}</a>
+		        <td><a href="{{route('muestras.edit',$item->muestra_id)}}">{{$item->muestra_id}}</a></td>
 		        </td>
 		         <td>
 		           <a href="{{route('laboratorios.edit',$item->id)}} " class="btn btn-warning btn-sm"><img src="img/editar2.png" alt="" height="25px"></a>
@@ -204,7 +202,7 @@
 					        inserte puntos validos
 					      </div>
 					</div>
-					<div class="col-md-4">
+					{{-- <div class="col-md-4">
 					    <label for="blending_id" class="form-label">Blending</label>
 					      <select name="blending_id" id="blending_id" class="form-control">
   							<option value=" ">--Escoja al Blending que pertenecera--</option>
@@ -217,7 +215,7 @@
 					      <div class="invalid-feedback">
 					        inserte puntos validos
 					      </div>
-					</div>
+					</div> --}}
 					
 				 	<div class="col-12 my-3">
 				    	<button class="btn btn-primary" type="submit">Registrar</button>

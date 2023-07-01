@@ -16,9 +16,9 @@ class Poligono extends Model
     }
 
     //relacion uno a muchos
-     public function perforaciones(){
+     public function muestras(){
 
-        return $this->hasMany('App\Models\Perforacione');
+        return $this->hasMany('App\Models\Muestra');
     }
 
     public function descripcionBlendings(){

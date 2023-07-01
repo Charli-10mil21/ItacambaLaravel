@@ -25,6 +25,7 @@ class MateriaController extends Controller
     public function edit($id){
 
         $item = Materia::find($id);
+        
         return view('plani.detalleMateria', compact('item'));
 
     }
@@ -33,7 +34,7 @@ class MateriaController extends Controller
 
          $item = Materia::findOrFail($id);
          $item->update($request->all());
-          return back()->with('mensaje', 'Materia Editada');
+          return back()->with('mensaje','Materia Editada');
     }
 
     public function destroy(Request $request, $id){

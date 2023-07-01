@@ -16,15 +16,16 @@ return new class extends Migration
         Schema::create('muestras', function (Blueprint $table) {
             $table->id();
             $table->string('codigo');
-            $table->unsignedBigInteger('perforacion_id')->nullable();
+            $table->string('coordenadas');
+            $table->string('profundidad');
+            $table->string('codigoM');
             $table->unsignedBigInteger('poligono_id')->nullable();
 
-            $table->foreign('perforacion_id')
-                    ->references('id')->on('perforaciones')
-                    ->onDelete('set null');
             $table->foreign('poligono_id')
                     ->references('id')->on('poligonos')
                     ->onDelete('set null');
+
+            $table->timestamps();
         });
     }
 

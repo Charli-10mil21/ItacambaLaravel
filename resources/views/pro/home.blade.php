@@ -5,9 +5,9 @@
 @section('content')
 
 <div class="container py-4">
-		<div class="row">
+	<div class="row">
 
-		<div class="row fila row-cols-1 justify-content-between">
+		<div class="row fila row-cols-1 justify-content-between my-5">
 			<div class="iconos col col-xs-12 col-sm-12 col-md-3 col-lg-2 user">
 				<a href="{{route('producciones.index')}} " class="nav-link">
 					<div class="text-center">
@@ -26,7 +26,7 @@
 						<img src="img/panel.png " alt="" height="70px">
 					</div>
 					<div class="text-center">
-						<button class="btn btn-outline-success  my-3" >
+						<button class="btn btn-outline-primary  my-3" >
 									Panel Central
 						</button>
 					</div>

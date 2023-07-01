@@ -6,10 +6,8 @@ use App\Models\Laboratorio;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Carbon\Carbon;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
-use Maatwebsite\Excel\Concerns\WithGroupedHeadingRow; /** esto es para especificar que usa cabeceras */
-use Maatwebsite\Excel\Concerns\WithCustomCsvSettings; /** para la configuracion los separadores de campos en el csv */
 
-class LaboratorioImport implements ToModel,WithGroupedHeadingRow,WithCustomCsvSettings
+class LaboratorioImport implements ToModel
 {
     /**
     * @param array $row
@@ -38,23 +36,27 @@ class LaboratorioImport implements ToModel,WithGroupedHeadingRow,WithCustomCsvSe
     public function model(array $row)
     {
         return new Laboratorio([
-            // 'fecha' => Carbon::instance(Date::excelToDateTimeObject($row['fecha'])),
-            'fecha' => $row['fecha'],
-            'mg' => $row['mg'],
-            'fe' => $row['fe'],
-            'si' => $row['si'],
-            'al' => $row['al'],
-            'ca' => $row['ca'],
-            'destino' => $row['destino'],
-            'muestra_id' => $row['muestra_id'],
-            'blending_id' => $row['blending_id'],
+            'fecha' => Carbon::instance(Date::excelToDateTimeObject($row[0])),
+            'SiO2' => $row[1],
+            'Al2O3' => $row[2],
+            'Fe2O3' => $row[3],
+            'CaO' => $row[4],
+            'MgO' => $row[5],
+            'Na2O' => $row[6],
+            'K2O' => $row[7],
+            'Cl' => $row[8],
+            'FSC' => $row[9],
+            'MS' => $row[10],
+            'MA' => $row[11],
+            'destino' => $row[12],
+            'muestra_id' => $row[13],
         ]);
     }
 
-    public function getCsvSettings(): array
-    {
-        return [
-            'delimiter' => ','
-        ];
-    }
+    // public function getCsvSettings(): array
+    // {
+    //     return [
+    //         'delimiter' => ','
+    //     ];
+    // }
 }

@@ -27,7 +27,7 @@ class PoligonoController extends Controller
         $item = Poligono::find($id);
         $topografia= $item->topografia;
         $topografias = Topografia::all();
-        $perforaciones = $item->perforaciones;
+        $perforaciones = $item->muestras;
         
 
         return view('plani.detallePoligono', compact('item','topografia','topografias','perforaciones'));

@@ -18,7 +18,7 @@
 				
 				@csrf 
 				@method('put')
-		  			<div class="col-md-12">
+		  			<div class="col-md-2">
 				    	<label for="fecha" class="form-label">Fecha</label>
 				    	<input type="text" class="form-control" id="fecha" name="fecha" value="{{$item->fecha}}"  required>
 				    	<div class="valid-feedback">
@@ -103,92 +103,32 @@
 					      </div>
 					</div>
 					
-					<div class="col-md-4">
+					<div class="col-md-2">
 					    <label for="destino" class="form-label">Destino</label>
 					      <input type="text" class="form-control" id="destino" name="destino" value="{{$item->destino}}" required>
 					      <div class="invalid-feedback">
 					        inserte puntos validos
 					      </div>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-2">
 					    <label for="muestra_id" class="form-label">Muestra</label>
 					      <input type="text" class="form-control" id="muestra_id" name="muestra_id" value="{{$item->muestra_id}}" required>
 					      <div class="invalid-feedback">
 					        Ingrese un dato existente
 					      </div>
 					</div>
-					<div class="col-md-4">
-					    <label for="blending_id" class="form-label">Blending</label>
-					      <input type="text" class="form-control" id="blending_id" name="blending_id" value="{{$item->blending_id}}" required>
-					      <div class="invalid-feedback">
-					        Ingrese un dato existente
-					      </div>
+					<div class="row">
+						<div class="col-12 col-md-2 my-3">
+							<button class="btn btn-dark" type="submit">Guardar</button>
+						  </div>
+						  <div class="col-12 col-md-2 my-3">
+							  <a href="{{route('laboratorios.index')}}" class="btn btn-danger btn-sm">
+								  Salir
+							  </a>
+							
+						  </div>
 					</div>
-					{{-- <div class="col-md-12">
-						<h3>Muestra</h3>
-						<table class="table">
-						    <thead>
-						      <tr>
-						        <th scope="col">#id</th>
-						       	<th scope="col">Lote</th>
-						       	<th scope="col">Tipo</th>
-						        <th scope="col">Perforacion</th>
-						        <th scope="col">Materia Prima</th>
-						      </tr>
-						    </thead>
-						    <tbody>
-						      <tr>
-						        <th scope="row">{{$muestra->id}}</th>
-						        <td>{{$muestra->lote}}</td>
-						        <td>{{$muestra->tipo}}</td>
-						        <td><a href="{{route('perforaciones.edit',$muestra->perforacion_id)}}">{{$muestra->perforacion_id}}</a> </td>
-						        <td><a href="{{route('materias.edit',$muestra->materia_id)}}">{{$muestra->materia_id}}</a></td>
-						      </tr>
-						    </tbody>
-					  	</table>
-			  		</div> --}}
-
-			  		{{-- <div class="col-md-12">
-						<h3>Blending</h3>
-						<table class="table">
-						    <thead>
-						      <tr>
-						        <th scope="col">#id</th>
-						       	<th scope="col">Codigo Produccion</th>
-						       	<th scope="col">Fecha</th>
-						        <th scope="col">FSM</th>
-						        <th scope="col">MS</th>
-						        <th scope="col">MA</th>
-						      	<th scope="col">Toneladas</th>
-						      	<th scope="col">Viajes</th>
-						      	<th scope="col">Planificacion</th>
-						      </tr>
-						    </thead>
-						    <tbody>
-						      <tr>
-						        <th scope="row">{{$blending->id}}</th>
-						        <td>{{$blending->codigo}}</td>
-						        <td>{{$blending->fecha}}</td>
-						        <td>{{$blending->fsc}}</td>
-						        <td>{{$blending->ms}}</td>
-						        <td>{{$blending->ma}}</td>
-						        <td>{{$blending->toneladas}}</td>
-						        <td>{{$blending->viajes}}</td>
-						        <td><a href="{{route('planificacions.edit',$blending->planificacion_id)}}">{{$blending->planificacion_id}}</a> </td>
-						      </tr>
-						    </tbody>
-					  	</table>
-			  		</div> --}}
-					
-				  	<div class="col-12 col-md-1 my-3">
-				    	<button class="btn btn-primary" type="submit">Guardar</button>
-				  	</div>
-				  	<div class="col-12 col-md-1 my-3">
-				  		<a href="{{route('laboratorios.index')}}" class="btn btn-danger btn-sm">
-				  			Salir
-				  		</a>
-				    	
-				  	</div>
+				  	
 				</form>
 		</div>
 		

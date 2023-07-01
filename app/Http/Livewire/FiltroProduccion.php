@@ -19,7 +19,7 @@ class FiltroProduccion extends Component
 
     public function render()
     {
-        $items = Produccione::filter($this->fecha)->paginate(5);
+        $items = Produccione::filter($this->fecha)->latest()->paginate(5);
         $blendings = Blending::all();
         return view('livewire.filtro-produccion', compact('items','blendings'));
     }

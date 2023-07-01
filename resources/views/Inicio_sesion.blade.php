@@ -10,7 +10,7 @@
 	<style>
 		body{
 			background: rgb(0, 128, 255);
-			background: linear-gradient(to bottom,rgb(255,255,255),rgb(227,124,74));
+			background: linear-gradient(to bottom,rgb(255,255,255),rgb(0,0,0));
 			height: 100%;
 			min-height: 100%;
 			font-family: Fredoka One rev=2;
@@ -24,23 +24,23 @@
 
 		}
 		.bgform{
-/*			background-color: rgb(178, 144, 135);*/
+			background-color: rgb(44, 44, 44);
 		}
 		h2 {
 				
 				font-size: 55px;
-				color: 	rgb(29, 86, 153);
+				color: 	rgb(255, 255, 255);
 
 		}
 
 		label{
 			font-size: 20px;
-			color: 	rgb(29, 86, 153);
+			color: 	rgb(255, 255, 255);
 		}
 		.btn{
 			font-size: 20px;
-			background-color: rgb(29, 86, 153) ;
-			color: 	rgb(255, 255,255);
+			background-color: rgb(255, 255, 255) ;
+			color: 	rgb(0, 0,0);
 
 		}
 
@@ -51,9 +51,14 @@
 
 	<header class="d-flex">
 		<div class=" container text-center mt-4 px-5">
-		<img src="img/logo-itacamba.png" alt="">
+		<img src="img/logo2.png" alt="" height="180px">
 		</div>
 	</header>
+	@if(session('mensaje')) 
+			<div class="alert alert-success">
+				{{session('mensaje')}}
+			</div>
+	@endif
 
 	<div class="container w-75 my-4 rounded shadow">
 		<div class="row align-items-strech">
@@ -74,18 +79,16 @@
 						<label for="password" class="form-label fw-bold"> Contraseña</label>
 						<input type="password" class="form-control" name="password">
 					</div>
-					<div class="mb-4 form-check">
-						<input type="checkbox" name="conectado" class="form-check-input">
-						<label for="conectado" class="form-check-label">Mantenerme Conectado</label>
-					</div>
 					@error('message')
 						<p class="border border-red-500 rounded-md bg-red-100 w-full text-red-600 p-2 my-2">usuario incorrecto</p>
 					@enderror
-
-					<div class="d-grid my-3">
-						<button type="submit" class="btn my-3">Iniciar Sesion
-						</button>
+					<div class="row justify-content-center">
+						<div class="d-grid col-md-6 my-3">
+							<button type="submit" class="btn btn-outline-dark my-2">Iniciar Sesion
+							</button>
+						</div>
 					</div>
+					
 				</form>
 
 				<!--login de redes sosciales-->

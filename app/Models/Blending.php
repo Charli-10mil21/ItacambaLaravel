@@ -35,5 +35,16 @@ class Blending extends Model
         return $this->belongsTo('App\Models\Planificacion');
     }
 
+    public function scopeFiltro($query, $filters){
+        $query->when($filters['codigo'] ?? null, function($query, $codigo){
+            $query->where('codigo', $codigo);
+        })->when($filters['fromdate'] ?? null, function($query, $fromdate){
+            $query->where('fecha', '>=', $fromdate);
+        })->when($filters['todate'] ?? null, function($query, $todate){
+            $query->where('fecha', '<=', $todate);
+        });
+
+    }
+
 
 }

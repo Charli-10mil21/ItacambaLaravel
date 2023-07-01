@@ -15,7 +15,7 @@ class DescMaquinaria extends Model
         return $this->belongsTo('App\Models\Panele');
     }
 
-    public function Maquinaria(){
+    public function maquinaria(){
         return $this->belongsTo('App\Models\Maquinaria');
     }
 

@@ -22,10 +22,10 @@ return new class extends Migration
             $table->time('HoraFin')->nullable();
             $table->time('HorasT')->nullable();
             $table->time('HorasEfectivas')->nullable();
-            $table->string('N_volquetas')->nullable();
+            $table->integer('N_volquetas')->nullable();
             $table->integer('N_viajes')->nullable();
-            $table->string('toneladas_total')->nullable();
-            $table->string('balanza')->nullable();
+            $table->integer('toneladas_total')->nullable();
+            $table->integer('balanza')->nullable();
            
             
 

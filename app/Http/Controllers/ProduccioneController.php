@@ -10,23 +10,25 @@ use App\Models\Produccione;
 use App\Models\Turno;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\DB;
 
 class ProduccioneController extends Controller
 {
     public function index(){
 
-         $items = Produccione::paginate(5);
-         $blendings= Blending::all();
+         $items = Produccione::latest()->paginate(5);
+        //  $blendings= Blending::all(); 
+         $blendings= Blending::latest()->get(); /*esto es para ordenar de forma descendente segun la fecha de creacion es decir primero el ultimo agregado*/
         return view('pro.produccion', compact('items', 'blendings'));
 
     }
 
-    public function grafica(){
-        $items = Produccione::all();
-        $blendings= Blending::all();
-        return view('admin.informeProduccion', compact('items', 'blendings'));
+    // public function grafica(){
+    //     $items = Produccione::all();
+    //     $blendings= Blending::all();
+    //     return view('admin.informeProduccion', compact('items', 'blendings'));
 
-    }
+    // }
 
     public function store(Request $request){
 
@@ -62,19 +64,31 @@ class ProduccioneController extends Controller
         $item = Produccione::find($id);
         $viajesT = Panele::where('produccione_id', $id)->sum('N_viajes');
         $produccionT = Panele::where('produccione_id', $id)->sum('toneladas_total');
-        $HorasT = Panele::where('produccione_id', $id)->sum('HorasT');
-        $HorasEfe = Panele::where('produccione_id', $id)->sum('HorasEfectivas');
+        // $HorasT = Panele::where('produccione_id', $id)->sum('HorasT');
+        $HorasT = Panele::where('produccione_id', $id)->select(DB::raw('SEC_TO_TIME(SUM(TIME_TO_SEC(HorasT)))'))->value('SEC_TO_TIME(SUM(TIME_TO_SEC(HorasT)))');
+        $HorasEfeN = Panele::where('produccione_id', $id)->sum('HorasEfectivas');
+        $HorasEfe = Panele::where('produccione_id', $id)->select(DB::raw('SEC_TO_TIME(SUM(TIME_TO_SEC(HorasEfectivas)))'))->value('SEC_TO_TIME(SUM(TIME_TO_SEC(HorasEfectivas)))');
         $balanzaT = Panele::where('produccione_id', $id)->sum('balanza');
-        $segundos = $HorasEfe /10000 ;
+        $horasEfectivasSegundos = strtotime($HorasEfe) - strtotime('00:00:00');
+        $segundos = $horasEfectivasSegundos /3600 ;
         $productividad = $produccionT / $segundos;
         $item->T_viajes = $viajesT;
         $item->T_produccion = $produccionT;
+
+        // $segundos = $HorasT;
+        // $horas = floor($segundos / 3600); // Obtener las horas
+        // $minutos = floor(($segundos / 60) % 60); // Obtener los minutos
+        // $segundos = $segundos % 60; // Obtener los segundos
+
+        // $tiempoFormateado = Carbon::createFromTime($horas, $minutos, $segundos)->format('H:i:s');
+        // $item->T_horas = $tiempoFormateado;
+
         $item->T_horas= $HorasT;
         $item->H_efectivas= $HorasEfe;
         $item->productividad=$productividad;
         $item->T_balanza = $balanzaT;
         $item->save();
-        return back()->with('mensaje', 'se actualizo informe '. $segundos );
+        return back()->with('mensaje', 'se actualizo informe ' );
     }
 
     public function generar_pdf($id){

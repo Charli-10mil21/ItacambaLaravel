@@ -82,7 +82,7 @@ class informeProExport implements FromCollection,WithCustomStartCell, Responsabl
         $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
         $drawing->setName('Itacamba');
         $drawing->setDescription('logo Itacamba');
-        $drawing->setPath(public_path('img/logo-itacamba.png'));
+        $drawing->setPath(public_path('img/logo2.png'));
         $drawing->setHeight(90);
         $drawing->setCoordinates('C3');
 

@@ -85,6 +85,9 @@
     </div>
 
     <div class="firmas">
+        <div>
+            <p>------------------</p>
+        </div>
         <div class="caja">
             <p>Jefe de Produccion</p>
         </div>

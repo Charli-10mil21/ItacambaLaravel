@@ -16,9 +16,5 @@ class Perforacione extends Model
         return $this->belongsTo('App\Models\Poligono');
     }
 
-    //relacion uno a muchos
-
-    public function muestras(){
-        return $this->hasMany('App\Models\Muestra');
-    }
+    
 }

@@ -10,10 +10,7 @@ class Muestra extends Model
     use HasFactory;
 
     protected $guarded =[];
-    //relacion uno a muchos (inversa)
-    public function perforacion(){
-        return $this->belongsTo('App\Models\Perforacione');
-    }
+    
     public function poligono(){
         return $this->belongsTo('App\Models\Poligono');
     }

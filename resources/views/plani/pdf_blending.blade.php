@@ -1,116 +1,82 @@
-  <table >
-    <thead style="background-color: #94b43b">
-      <tr>
-        <th >#id</th>
-       	<th >Codigo Produccion</th>
-       	<th >Fecha</th>
-   		<th >FSC</th>
-   		<th >MS</th>
-   		<th >MA</th>
-   		<th >Toneladas Totales</th>
-   		<th >Viajes</th>
-        <th >Planificacion</th>
-        <th >Nivel Topografico</th>
-      </tr>
-    </thead>
-    <tbody>
-     
-      <tr>
-        <th>{{$items->id}}</th>
-        <td>{{$items->codigo}}</td>
-        <td>{{$items->fecha}}</td>
-        <td>{{$items->fsc}}</td>
-        <td>{{$items->ms}}</td>
-        <td>{{$items->ma}}</td>
-        <td>{{$items->toneladas}}</td>
-        <td>{{$items->viajes}}</td>
-        <td>{{$items->planificacion_id}}</td>
-      </tr>
-    </tbody>
-  </table>
+@extends('layouts.plantillaPdf')
 
-  <div>
-	<h3>Planificacion</h3>
+@section('title', 'Informe Produccion')
+
+
+@section('content') 
+
+	<h1>Blending Mina </h1>
+	<p> Codigo de Produccion : <strong>{{$item->codigo}}</strong> Estado: <strong>{{$item->estado}}</strong></p>
+	<p>Fecha Programada : <strong>{{$item->fecha}}</strong> </p>
+	<p>Inicio a horas : <strong> {{$item->HoraIni}}</strong>  aproximadamente </p>
+	<p>Tipo de Material : <strong> {{$item->materia->name}} </strong> </p>
+	
+	<table class="table">
+		<thead>
+			<tr>
+			<th scope="col">Nivel</th>
+			<th scope="col">N# Voladura</th>
+			<th scope="col">SiO2</th>
+			<th scope="col">Al2O3</th>
+			<th scope="col">Fe2O3</th>
+			<th scope="col">CaO</th>
+			<th scope="col">MgO</th>
+			<th scope="col">K2O</th>
+			<th scope="col">Cl</th>
+			<th scope="col">FSC</th>
+			<th scope="col">MS</th>
+			<th scope="col">MA</th>
+			<th scope="col">Toneladas</th>
+			<th scope="col">Viajes</th>
+			
+			</tr>
+		</thead>
+		<tbody>
+			@foreach($descripciones as $desc)
+			<tr>
+				<td scope="row">{{$desc->area}}</td>
+				<td>{{$desc->Voladura}}</td>
+				<td>{{$desc->SiO2}}</td>
+				<td>{{$desc->Al2O3}}</td>
+				<td>{{$desc->Fe2O3}}</td>
+				<td>{{$desc->CaO}}</td>
+				<td>{{$desc->MgO}}</td>
+				<td>{{$desc->K2O}}</td>
+				<td>{{$desc->Cl}}</td>
+				<td>{{$desc->FSC}}</td>
+				<td>{{$desc->MS}}</td>
+				<td>{{$desc->MA}}</td>
+				<td>{{$desc->toneladas}}</td>
+				<td>{{$desc->viajes}}</td>
+			</tr>
+			@endforeach()
+		</tbody>
+	</table>
+
 	<table>
-	    <thead style="background-color: #94b43b">
-	      <tr>
-	        <th >#id</th>
-	        <th >Nombre</th>
-	        <th >Presupuesto</th>
-	        <th >Produccion</th>
-	        <th >Fecha Inicio</th>
-	        <th >Fecha fin</th>
-	        <th >Duracion</th>
-	        <th >Usuario</th>
-	      </tr>
-	    </thead>
-	    <tbody>
-	      <tr>
-	        <th >{{$plani->id}}</th>
-	        <td>{{$plani->name}}</td>
-	        <td>{{$plani->presupuesto}}</td>
-	        <td>{{$plani->produccion}}</td>
-	        <td>{{$plani->fechaIni}}</td>
-	        <td>{{$plani->fechaFin}}</td>
-	        <td>{{$plani->duracion}}</td>
-	        <td>{{$plani->user_id}}</td>
-	      </tr>
-	    </tbody>
-	  </table>
-</div>
+		<thead>
+			<tr>
+				<th> FSC Total</th>
+				<th> MS Total</th>
+				<th> MA Total</th>
+				<th>Toneladas Total</th>
+				<th>Viajes Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach ($blendingsTotal as $bleT)
+			<tr>
+				<td>{{$bleT->FSC_total}}</td>
+				<td>{{$bleT->MS_total}}</td>
+				<td>{{$bleT->MA_total}}</td>
+				<td>{{$bleT->toneladas_total}}</td>
+				<td>{{$bleT->viajes_total}}</td>
+			</tr>
+			@endforeach
+		</tbody>
+	</table>
 
-<h3>Nivel Topografico</h3>
-<div>
-		<table>
-	    <thead style="background-color: #94b43b">
-	      <tr>
-	        <th>#id</th>
-	       	<th>Nivel</th>
-	       	<th>Levantamiento de Puntos</th>
-	        <th>Replanteammiento de Puntos</th>
-	        
-	      </tr>
-	    </thead>
-	    <tbody>
-		      <tr>
-		        <th>{{$topografia->id}}</th>
-		        <td>{{$topografia->area}}</td>
-		        <td>{{$topografia->levPuntos}}</td>
-		        <td>{{$topografia->replanPuntos}}</td>
-		      </tr>
-	    </tbody>
-	  </table>				 	
-	</div>
+	<p><strong> Observaciones :</strong>{{$item->Observaciones}} </p>
 
-	<h1>Informes de Laboratorio</h1>
-		<div >
-		  <table>
-		    <thead style="background-color: #94b43b">
-		      <tr>
-		        <th >#id</th>
-		       	<th >Fecha</th>
-		       	<th >Magnesio</th>			       	
-		       	<th >Hierro</th>
-		       	<th >Silicio</th>
-		       	<th >Aluminio</th>
-		       	<th >Calcio</th>
-		       	<th >Destino</th>
-		      </tr>
-		    </thead>
-		    <tbody>
-		     @foreach($laboratorios as $lab)
-		      <tr>
-		        <th>{{$lab->id}}</th>
-		        <td>{{$lab->fecha}}</td>
-		        <td>{{$lab->mg}}</td>
-		        <td>{{$lab->fe}}</td>					        
-		        <td>{{$lab->si}}</td>
-		        <td>{{$lab->al}}</td>
-		        <td>{{$lab->ca}}</td>
-		        <td>{{$lab->destino}}</td>				        
-		      </tr>
-		      @endforeach()
-		    </tbody>
-		  </table>
-		  
-		</div>
+@endsection
+  

@@ -40,16 +40,17 @@
 					        Ingrese peso en kg
 					      </div>
 					</div>
-					
-				  	<div class="col-12 col-md-2 my-3">
-				    	<button class="btn btn-primary" type="submit">Guardar</button>
-				  	</div>
-				  	<div class="col-12 col-md-2 my-3">
-				  		<a href="{{route('topografias.index')}}" class="btn btn-danger btn-sm">
-				  			Salir
-				  		</a>
-				    	
-				  	</div>
+					<div class="row">
+						<div class="col-12 col-md-2 my-3">
+							<button class="btn btn-primary" type="submit">Guardar</button>
+						  </div>
+						  <div class="col-12 col-md-2 my-3">
+							  <a href="{{route('topografias.index')}}" class="btn btn-danger btn-sm">
+								  Salir
+							  </a>
+							
+						  </div>
+					</div>
 				</form>
 		</div>
 

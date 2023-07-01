@@ -15,10 +15,9 @@ class MuestraController extends Controller
     public function index(){
 
          $items = Muestra::paginate(5);
-         $perforaciones= Perforacione::all();
          $materias= Materia::all();
          $poligonos= Poligono::all();
-        return view('plani.muestra', compact('items','perforaciones','materias','poligonos'));
+        return view('plani.muestra', compact('items','materias','poligonos'));
 
     }
 
