@@ -4,31 +4,31 @@
 
         <div class="col-md-2 my-1">
             <p> Nombre</p> 
-            <select wire:model="filters.name" type="text" class="form-control">
+            <select wire:model.live="filters.name" type="text" class="form-control">
                 <option value="">--Escoje una Planificacion--</option>
                 @foreach($planificaciones as $plan)
                     <option value="{{$plan->name}}">{{$plan->name}}</option>
-                @endforeach()
+                @endforeach
             </select>
         </div>
         <div class="col-md-2 my-1">
             <p> Encargado</p> 
-            <select wire:model="filters.user" type="text" class="form-control">
+            <select wire:model.live="filters.user" type="text" class="form-control">
                 <option value="">--Escoje un Encargado--</option>
                 @foreach($usuarios as $user)
                     @if ($user->campo == "Administracion")
                     <option value="{{$user->id}}">{{$user->nombre}}</option>
                     @endif
-                @endforeach()
+                @endforeach
             </select>
         </div>
         <div class="col-md-2 my-1">
             <p>Desde fecha: </p> 
-            <input wire:model="filters.fromdate" type="date" class="form-control" >
+            <input wire:model.live="filters.fromdate" type="date" class="form-control" >
         </div>
         <div class="col-md-2 my-1">
             <p>Hasta fecha: </p> 
-            <input wire:model="filters.todate" type="date" class="form-control" >
+            <input wire:model.live="filters.todate" type="date" class="form-control" >
         </div>
     </div>
     <div class="row my-4" >
@@ -75,7 +75,7 @@
                  </form>
                </td>
             </tr>
-            @endforeach()
+            @endforeach
           </tbody>
         </table>
         {{ $items->links('pagination::bootstrap-4') }}

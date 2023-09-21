@@ -3,11 +3,11 @@
         <h2>Graficar Desde:</h2>
         <div class="col-md-2 my-1">
             <p>Desde fecha: </p> 
-            <input wire:model="fechas.fromdate" type="date" class="form-control" >
+            <input wire:model.live="fechas.fromdate" type="date" class="form-control" >
         </div>
         <div class="col-md-2 my-1">
             <p>Hasta fecha: </p> 
-            <input wire:model="fechas.todate" type="date" class="form-control" >
+            <input wire:model.live="fechas.todate" type="date" class="form-control" >
         </div>
     </div> --}}
 
@@ -19,20 +19,20 @@
 
         <div class="col-md-2 my-1">
             <p> Codigo Blending</p> 
-            <select wire:model="filters.blending_id" type="text" class="form-control">
+            <select wire:model.live="filters.blending_id" type="text" class="form-control">
                 <option value="">--Escoje un Blending--</option>
                 @foreach($blendings as $ble)
                     <option value="{{$ble->id}}">{{$ble->codigo}}</option>
-                @endforeach()
+                @endforeach
             </select>
         </div>
         <div class="col-md-2 my-1">
             <p>Desde fecha: </p> 
-            <input wire:model="filters.fromdate" type="date" class="form-control" >
+            <input wire:model.live="filters.fromdate" type="date" class="form-control" >
         </div>
         <div class="col-md-2 my-1">
             <p>Hasta fecha: </p> 
-            <input wire:model="filters.todate" type="date" class="form-control" >
+            <input wire:model.live="filters.todate" type="date" class="form-control" >
         </div>
     </div>
     <div class="row my-4" >
@@ -80,7 +80,7 @@
                 <a href="{{route('producciones.edit',$item->id)}} " class="btn btn-warning btn-sm"><img src="img/editar2.png" alt="" height="25px"></a>
             </td>
             </tr>
-            @endforeach()
+            @endforeach
         </tbody>
         </table>
         {{ $items->links('pagination::bootstrap-4') }}

@@ -60,6 +60,7 @@ Route::resource('maquinarias', MaquinariaController::class);
 Route::get('informePlanificacion', [InformePlaniController::class, 'index'])->name('InformePlani');
 Route::get('informePlaniDetalle/{id}', [InformePlaniController::class, 'InformesDes'])->name('InformePlaniDetalle');
 Route::get('informeProduccion', [InformePlaniController::class, 'produccion'])->name('InformeProduc');
+Route::get('informeConciliacion', [InformePlaniController::class, 'conciliacion'])->name('InformeConci');
 
     // Route::get('Trabajador', 'trabajador');
 

@@ -118,15 +118,17 @@
 				</div>
 				<div class="col-md-2">
 					<label for="HorasT" class="form-label">Horas Total</label>
-					<input type="int" class="form-control" name="HorasT" value="{{$item->HorasT}}" >
+					<p>{{$item->HorasT}}</p>
+					{{-- <input type="int" class="form-control" name="HorasT" value="{{$item->HorasT}}" > --}}
 
 					<div class="valid-feedback">
 					Looks good!
 					</div>
 				</div>
-				<div class="col-md-2">
+				<div class="col-md-3">
 					<label for="HorasEfectivas" class="form-label">Horas Efectivas</label>
-					<input type="int" class="form-control" id="chronoInput" name="HorasEfectivas" value="{{$item->HorasEfectivas}}">
+					<p>{{$item->HorasEfectivas}}</p>
+					{{-- <input type="int" class="form-control" id="chronoInput" name="HorasEfectivas" value="{{$item->HorasEfectivas}}"> --}}
 
 					<div class="valid-feedback">
 					Looks good!
@@ -234,8 +236,8 @@
 			  	</div>
 			  	<div class="col-md-3">
 			    	<label for="volqueta_id" class="form-label">Volquetas</label>
-					  <select name="volqueta_id" id="volqueta_id" class="form-control">
-						  <option value=" ">--Escoja una volqueta--</option>
+					  <select name="volqueta_id" id="volqueta_id" class="form-control" required>
+						  <option value="">--Escoja una volqueta--</option>
 						  @foreach($volquetas as $vol)
 						  		@if($vol->estado == "Disponible")
 								  <option value="{{$vol->id}}">{{$vol->responsable}}</option>

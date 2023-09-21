@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Charts\graficaProduccion;
 use Illuminate\Support\Facades\DB;
 use App\Models\Produccione;
+use App\Models\Blending;
 
 class InformePlaniController extends Controller
 {
@@ -21,7 +22,22 @@ class InformePlaniController extends Controller
     }
 
     public function produccion(){
-        $produccionTotal = DB::select('SELECT * FROM suma_producciones'); 
+        $toneladas_totales = Produccione::sum('T_produccion');
+        $totalHorasTrabajadas = DB::table('producciones')
+        ->select(DB::raw('SEC_TO_TIME(SUM(TIME_TO_SEC(T_horas))) as total_horas_trabajadas'))
+        ->get();
+
+        $horas_trabajadas_totales = $totalHorasTrabajadas[0]->total_horas_trabajadas;
+
+        
+        // $horas_trabajadas_totales = Produccione::sum('T_horas');
+
+        $totalHorasEfectivas = DB::table('producciones')
+        ->select(DB::raw('SEC_TO_TIME(SUM(TIME_TO_SEC(H_efectivas))) as total_horas_efectivas'))
+        ->get();
+
+        $horas_efectivas_totales = $totalHorasEfectivas[0]->total_horas_efectivas;
+        // $horas_efectivas_totales = Produccione::sum('H_efectivas');
         $data = Produccione::pluck( 'T_produccion', 'fecha');
         $title = 'Produccion por Fecha';
         $chart = new graficaProduccion;
@@ -29,44 +45,44 @@ class InformePlaniController extends Controller
         $chart->labels($data->keys());
         $chart->dataset($title, 'line', $data->values())->color('blue');
 
-        return view('admin.informeProduccion',compact('chart','produccionTotal'));
+        return view('admin.informeProduccion',compact('chart','toneladas_totales','horas_trabajadas_totales','horas_efectivas_totales'));
 
     }
 
-    // public function all(Request $request){
-    //     $planificaciones = Planificacion::all();
-    //     return response(json_encode($planificaciones),200)->header('Content-type','text/plain');
-    // }
+    public function conciliacion(){
+        $toneladas_totales = Produccione::sum('T_produccion');
 
-    // public function pro(Request $request){
-    //     $producciones = Produccione::all();
-    //     return response(json_encode($producciones),200)->header('Content-type','text/plain');
-    // }
+        $totalHorasTrabajadas = DB::table('producciones')
+        ->select(DB::raw('SEC_TO_TIME(SUM(TIME_TO_SEC(T_horas))) as total_horas_trabajadas'))
+        ->get();
 
-    // public function poli(Request $request){
-    //     $areas = Topografia::get('area');
-    //     $poligonos = Poligono::all();
-    //     $result = [$areas,$poligonos];
+        $horas_trabajadas_totales = $totalHorasTrabajadas[0]->total_horas_trabajadas;
 
-    //     return response(json_encode($poligonos),200)->header('Content-type','text/plain');
-    // }
+        
+        // $horas_trabajadas_totales = Produccione::sum('T_horas');
 
+        $totalHorasEfectivas = DB::table('producciones')
+        ->select(DB::raw('SEC_TO_TIME(SUM(TIME_TO_SEC(H_efectivas))) as total_horas_efectivas'))
+        ->get();
 
-    // public function InformesDes($id)
-    // {
-    //     $item = Planificacion::find($id);
-    //     $user= $item->user;
-    //     $blendings= $item->blendings;
-    //     return view('admin.InformePlaniDetalle',compact('item','user','blendings'));
-    // }
+        $horas_efectivas_totales = $totalHorasEfectivas[0]->total_horas_efectivas;
+        // $horas_efectivas_totales = Produccione::sum('H_efectivas');
+        $data = Produccione::pluck( 'T_produccion', 'fecha');
+        $data2 = Blending::pluck( 'toneladas_total', 'fecha');
+        $presuTotal = Planificacion::sum('presupuesto');
+        $toneladasTotal = Planificacion::sum('toneladas_t');
+        $title1 = 'Produccion';
+        $title2 = 'Planificacion';
+        $chart = new graficaProduccion;
+        
+        $chart->labels($data->keys());
+        $chart->labels($data2->keys());
+        $chart->dataset($title1, 'line', $data->values())->color('blue');
+        $chart->dataset($title2, 'line', $data2->values())->color('red');
 
-    // public function Blending(Request $request){
-    //     $blend = Blending::where("planificacion_id","=",1)->get();
-    //     $res = response(json_encode($blend),200)->header('Content-type','text/plain');
+        return view('admin.informeConciliacion',compact('chart','presuTotal','toneladasTotal','toneladas_totales','horas_trabajadas_totales','horas_efectivas_totales'));
 
-    //     return $res;
+    }
 
-    //     //mañana intentar poner el res fuera del compact igual que en el blending function
-
-    // }
+    
 }

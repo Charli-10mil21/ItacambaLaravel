@@ -4,20 +4,20 @@
 
         <div class="col-md-2 my-1">
             <p> Codigo Blending</p> 
-            <select wire:model="filters.codigo" type="text" class="form-control">
+            <select wire:model.live="filters.codigo" type="text" class="form-control">
                 <option value="">--Escoje un Blending--</option>
                 @foreach($blendings as $ble)
                     <option value="{{$ble->codigo}}">{{$ble->codigo}}</option>
-                @endforeach()
+                @endforeach
             </select>
         </div>
         <div class="col-md-2 my-1">
             <p>Desde fecha: </p> 
-            <input wire:model="filters.fromdate" type="date" class="form-control" >
+            <input wire:model.live="filters.fromdate" type="date" class="form-control" >
         </div>
         <div class="col-md-2 my-1">
             <p>Hasta fecha: </p> 
-            <input wire:model="filters.todate" type="date" class="form-control" >
+            <input wire:model.live="filters.todate" type="date" class="form-control" >
         </div>
     </div>
     <div class="row my-4">
@@ -58,7 +58,7 @@
 		           </form>
 		         </td>
 		      </tr>
-		      @endforeach()
+		      @endforeach
 		    </tbody>
 		  </table>
 		  {{ $items->links('pagination::bootstrap-4') }}

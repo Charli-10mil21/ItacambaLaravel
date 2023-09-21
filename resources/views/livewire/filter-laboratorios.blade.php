@@ -4,7 +4,7 @@
 
         <div class="col-md-2 my-1">
             <p> Nivel Topografico</p> 
-            <select wire:model="filters.topografia_id" type="text" class="form-control">
+            <select wire:model.live="filters.topografia_id" type="text" class="form-control">
                 <option value="">--Escoja nivel topografico--</option>
                 @foreach($topografias as $topo)
                     <option value="{{$topo->area}}">{{$topo->area}}</option>
@@ -13,20 +13,20 @@
         </div>
         <div class="col-md-2 my-1">
             <p>N° Voladura: </p> 
-            <select wire:model="filters.poligono_id" type="text" class="form-control">
+            <select wire:model.live="filters.poligono_id" type="text" class="form-control">
                 <option value="">--Escoja n# de Voladura--</option>
                 @foreach($poligonos as $poli)
                     <option value="{{$poli->nombre}}">{{$poli->nombre}}</option>
-                @endforeach()
+                @endforeach
             </select>
         </div>
         <div class="col-md-2 my-1">
             <p>Desde fecha: </p> 
-            <input wire:model="filters.fromdate" type="date" class="form-control" >
+            <input wire:model.live="filters.fromdate" type="date" class="form-control" >
         </div>
         <div class="col-md-2 my-1">
             <p>Hasta fecha: </p> 
-            <input wire:model="filters.todate" type="date" class="form-control" >
+            <input wire:model.live="filters.todate" type="date" class="form-control" >
         </div>
     </div>
     <div class="row">

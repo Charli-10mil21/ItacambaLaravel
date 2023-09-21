@@ -47,8 +47,8 @@
 
 		
 			
-		<div class="row row-cols-1 row-cols-md-3 row-cols-lg-3 justify-content-between">
-			<div class="iconos col col-xs-12 col-sm-12 col-md-6 col-lg-6 user">
+		<div class="row row-cols-1 row-cols-md-3 row-cols-lg-3 justify-content-between my-5">
+			<div class="iconos col col-xs-12 col-sm-12 col-md-4 col-lg-4 user">
 				<a href="{{route('InformePlani')}} " class="nav-link">
 					<div class="text-center">
 						<img src="img/informe.png" alt="" height="90px">
@@ -60,7 +60,7 @@
 					</div>
 				</a>
 			</div>
-			<div class="iconos col col-xs-12 col-sm-12 col-md-6 col-lg-6 user">
+			<div class="iconos col col-xs-12 col-sm-12 col-md-4 col-lg-4 user">
 				<a href="{{route('InformeProduc')}} " class="nav-link">
 					<div class="text-center">
 						<img src="img/informe.png" alt="" height="90px">
@@ -68,6 +68,18 @@
 					<div class="text-center">
 						<button class="btn btn-outline-dark  my-3 " >
 									Informes de Produccion
+						</button>
+					</div>
+				</a>
+			</div>
+			<div class="iconos col col-xs-12 col-sm-12 col-md-4 col-lg-4 user">
+				<a href="{{route('InformeConci')}} " class="nav-link">
+					<div class="text-center">
+						<img src="img/informe.png" alt="" height="90px">
+					</div>
+					<div class="text-center">
+						<button class="btn btn-outline-dark  my-3 " >
+									Informes de Conciliacion 
 						</button>
 					</div>
 				</a>
